@@ -1,0 +1,12 @@
+{
+  "adminPass" : "lady8ug",
+  "sessionSecret": "04jndc9bu234zf08045u34nvcs",
+  "templatesDir": "views/templates",
+  "tmp": "/tmp",
+  "okpayId": "OK103477215",
+  "database": {
+    "development": "mongodb://localhost/shop2help",
+    "production": "mongodb://localhost/shop2help",
+    "test": "mongodb://localhost/vitalcms_test"
+  }
+}

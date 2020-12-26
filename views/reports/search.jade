@@ -1,0 +1,20 @@
+h2.main-head Поиск партнеров
+.main
+  form.add-date.search-table(ng-submit='vm.search()')
+    input.width-145(type='text' placeholder='Логин' ng-model='vm.query.login')
+    input.width-145(type='text' placeholder='E-mail' ng-model='vm.query.email')
+    input.width-145.phone(type='text' placeholder='Телефон' ng-model='vm.query.phone')
+    button.btn-grey(type='submit') Обновить
+    .clearfix
+
+  table.all-table.st-table.referers-table(ng-table='vm.tableParams' export-csv='csv')
+    tr(ng-repeat='user in $data' ui-sref='app.reports.referer({refererId: user._id})')
+      td(data-title="'Логин'" data-sortable="'login'") {{::user.login}}
+      td(data-title="'ФИО'" data-sortable="'fio'") {{::user.fio}}
+      td(data-title="'Город'" data-sortable="'city'") {{::user.city}}
+      td(data-title="'Оборот сети в жетонах'" data-sortable="'networth'") {{::user.networth}}
+      td(data-title="'Квалификация'" data-sortable="'qualification.name'") {{::user.qualification.name || '0%'}}
+
+  a.btn-grey(ng-mousedown='csv.generate()'
+    ng-href='{{csv.link()}}'
+    download="оборот рефералов пользователя {{vm.referer.fio}}.csv") Сохранить в Excel

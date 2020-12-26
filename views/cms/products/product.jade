@@ -1,0 +1,15 @@
+.page__title
+  h1 {{product.title}}
+    button.btn.btn-gray(ng-click='recycleProduct()') Удалить
+
+  .row
+    .col-md-9
+      ui-view
+    .col-md-3.product-menu
+      ul.nav-stacked
+        li(ui-sref-active='active')
+          a.btn-gray(ui-sref='products.show.details({productId: product._id})') Детали
+        li(ui-sref-active='active')
+          a.btn-gray(ui-sref='products.show.images') Изображения
+        li(ui-sref-active='active')
+          a.btn-gray(ui-sref='products.show.properties({productId: product._id})') Свойства

@@ -1,0 +1,23 @@
+.page__title
+  h1 Редактировать промокод
+.page__content
+  label Код
+  input.form-control(ng-model='vm.promo.promocode')
+  label Название
+  input.form-control(ng-model='vm.promo.name')
+  label Скидка
+  input.form-control(ng-model='vm.promo.discount')
+  label Описание
+  textarea.form-control(ng-model='vm.promo.description')
+  label Ссылка
+  input.form-control(ng-model='vm.promo.goto_link')
+  .input-group
+    label Действует до
+    .input-group
+      input.form-control(type='text' ng-model='vm.promo.date_end' disabled
+        datepicker-options='vm.dateOptions'
+        datepicker-popup='{{vm.dateOptions.format}}' is-open="vm.fromOpen" close-text='Закрыть')
+      .input-group-btn
+        button.btn.btn-default(type='button' ng-click='vm.toggle($event)')
+          i.glyphicon.glyphicon-calendar
+  button(ng-click='vm.savePromo()') Сохранить

@@ -1,0 +1,38 @@
+h2.main-head {{::vm.product.title}}
+.crumbs
+  ul
+    li(ng-repeat='cat in vm.product.crumbs')
+      a(ui-sref='app.categories.show({slug: cat.slug})') {{::cat.title}}
+
+.main
+  .catalog-item.big-catalog
+    product-images(product='vm.product')
+    .item-description
+      p.articul.big-articul Артикул: {{::vm.product.sku}}
+      .desc(ng-bind-html='vm.product.body')
+      p.articul Характеристики
+      p.desc(ng-repeat='prop in vm.product.properties')
+        span.prop-name {{::prop.name}}
+        | {{::prop.value}}
+    .item-price
+      .price-block
+        p Цена
+        .price
+          span {{::(vm.product.currentPrice | price)}} &nbsp;
+          b руб
+        | Количество
+        counter(amount='vm.product.amount' ng-hide='vm.product.inCart')
+        button.btn-grey(ng-click='vm.addToCart()' ng-hide='vm.product.inCart') В корзину
+        button.btn-grey.btn-grey-carted(ui-sref='app.cart' ng-show='vm.product.inCart') В корзине
+
+  .related-products(ng-if='(vm.product.related.length > 0)')
+    h4.news-name С этим товаром покупают
+    .item-add
+      .news-carousel.item-carousel
+        ul
+          li(ng-repeat='related in vm.product.related')
+            a(ui-sref='app.products.show({slug: related.slug})')
+              img(ng-src='{{::related.mainImage.thumb.url}}'
+                alt='{{::related.title}}' title='{{::related.title}}')
+      a.news-control-prev.c-prev(ng-if='(vm.product.related.length > 4)')
+      a.news-control-next.c-next(ng-if='(vm.product.related.length > 4)')

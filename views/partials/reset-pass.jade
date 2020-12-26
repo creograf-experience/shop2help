@@ -1,0 +1,11 @@
+.content-page.container-landing
+  h2(translate) Введите новый пароль
+  form(ng-submit='vm.resetPass()' name='vm.passForm' novalidate)
+    .form-control
+      input.mm-input(type='password' name='pass' ng-model='vm.pass'
+        placeholder='пароль' required ng-minlength='6')
+    .form-control
+      input.mm-input(type='password' name='passConfirm' placeholder='повторите пароль'
+        ng-model='vm.passConfirm' required input-match='vm.pass')
+    .form-control
+      button.btn(type='submit' translate) Сменить пароль

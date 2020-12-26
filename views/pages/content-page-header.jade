@@ -1,0 +1,68 @@
+.content-page
+  header
+    .top-line
+      .row
+        .col-lg-8.col-md-6.col-sm-5.col-xs-6
+          a.logo(href='/', target='_self')
+            //- img.logo-icon(src='/landing/img/logo-icon.png', alt='logo-icon')
+            img.logo-icon(src='/landing/img/shop2help-logo.png', alt='logo-icon')
+            span.logo-text 
+          nav.hidden-1400()
+            .hidden_nav
+              button.top_nav_button.visible-sm.visible-xs
+                i.fa.fa-bars
+            ul
+              li
+                a(ui-sref="pages.charity" ng-class='{active: (state.current.url==="charity")}' style="font-size: 16px !important;") Благотворительные организации
+              li
+                a(ui-sref="pages.shops" ng-class='{active: (state.current.url==="shops")}' style="font-size: 16px !important;") Магазины
+              li
+                a(ui-sref="pages.promo-codes" ng-class='{active: (state.current.url==="promo-codes")}' style="font-size: 16px !important;") Промокоды
+              //- li
+              //-   a(ui-sref="pages.feedback" ng-class='{active: (state.current.url==="feedback")}') Отзывы
+              li
+                a(ui-sref="pages.callback" ng-class='{active: (state.current.url==="callback")}' style="font-size: 16px !important;") Обратная связь
+              li
+                a(ui-sref="pages.faq" ng-class='{active: (state.current.url==="faq")}' style="font-size: 16px !important;") ЧАВО
+
+        .col-lg-4.col-md-6.col-sm-7.col-xs-6
+          .signin-wrapper(ng-class="user.login ? 'hidden' : '' ")
+            .signin.hidden-xs(ui-sref="pages.home.login" style="display:flex;align-items:center")
+              img.icon-men(src='/landing/img/icon-men.png', alt='' style="margin-right: 20px")
+              .icon-text.signin-icon Вход
+            a.blue-btn.top(ui-sref="pages.home.activate" ) Регистрация
+          .signin-wrapper.loggedIn(ng-class="!user.login ? 'hidden' : '' ")
+            .signin.hidden-sm.hidden-xs
+              img.icon-men(src='/landing/img/icon-men.png', alt='')
+              .icon-text(ui-sref="pages.profile" style="margin-top: 5px") {{user.name}} {{user.surname}}
+              img.icon-logout(src='/landing/img/logout.png', alt='' ng-click="logout()" style="margin-top: 3px")
+            .balance-wrap
+              .icon-text(ui-sref="pages.profile" class="visible-sm visible-xs hidden-560" ) {{user.name}} {{user.surname}}
+              .balance-text ваш баланс:
+              .balance-sum
+                span {{user.balance.ready | curr}}
+                img.rub-white(src='/landing/img/rub-white.png', alt='')
+        nav.hidden.visible-1400.second-nav(ng-class="user.login ? 'logged-nav' : '' ")
+          .hidden_nav
+            button.top_nav_button.visible-sm.visible-xs(ng-click="toggle = !toggle" ng-class="user.login ? 'logged-menu-btn' : '' ")
+
+              i.fa.fa-bars
+          ul(ng-class="{'flash' : toggle}")
+            li  
+              a(ui-sref="pages.charity" ng-click="toggle = !toggle" ng-class='{active: (state.current.url==="charity")}' style="font-size: 16px !important;") Благотворительные организации
+            li
+              a(ui-sref="pages.shops" ng-click="toggle = !toggle" ng-class='{active: (state.current.url==="shops")}' style="font-size: 16px !important;") Магазины
+            li
+              a(ui-sref="pages.promo-codes"  ng-click="toggle = !toggle" ng-class='{active: (state.current.url==="promo-codes")}' style="font-size: 16px !important;") Промокоды
+            //- li
+            //-   a(ui-sref="pages.feedback" ng-click="toggle = !toggle" ng-class='{active: (state.current.url==="feedback")}') Отзывы
+            li
+              a(ui-sref="pages.callback" ng-click="toggle = !toggle" ng-class='{active: (state.current.url==="callback")}' style="font-size: 16px !important;") Обратная связь
+            li
+              a(ui-sref="pages.faq" ng-click="toggle = !toggle" ng-class='{active: (state.current.url==="faq")}' style="font-size: 16px !important;") ЧАВО
+            li.visible-xs(ng-class="user.login ? 'hidden' : '' ")
+              a(ui-sref="pages.home.login" ng-click="toggle = !toggle") Вход
+            li.visible-xs(ng-class="!user.login ? 'hidden' : '' ")
+              a(ui-sref="pages.profile" ng-click="toggle = !toggle") Мой профиль
+            li.visible-xs.visible-sm(ng-class="!user.login ? 'hidden' : '' ")
+              a(ng-click="logout()") Выход

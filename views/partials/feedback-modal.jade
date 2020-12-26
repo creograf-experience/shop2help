@@ -1,0 +1,15 @@
+modal
+  #feedback-box.box-modal
+    .modal-close(ui-sref='pages.history')
+      img.close(src="landing/img/close-red.png" alt="")
+    .modal-title Оставьте свой отзыв
+    p Поставьте оценку
+      br
+      ng-rating(ng-model="vm.newFeedback.rating"
+        editable="true"
+        stars-count="5"
+        show-grade="true")
+    p Напишите комментарий
+      br
+      textarea(rows="10" cols="38" ng-model="vm.newFeedback.text")
+    a#btn-send-feedback.blue-btn(href="#" ng-click="vm.sendFeedback()") Отправить

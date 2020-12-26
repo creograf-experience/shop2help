@@ -1,0 +1,43 @@
+include content-page-header
+.view-shop.content-page
+  .container
+    .row.max-width
+      .page-path
+        a.main-blue(ui-sref="pages.charity")
+          | Благотворительные организации 
+        |> {{vm.charity.name}}
+      .content-title
+        | {{vm.charity.name}}
+      .row
+        .about-shop
+          .col-md-8
+            .left-col
+              .conditions(ng-if="vm.charity.website")
+                .conditions-title
+                  a(href="{{vm.charity.website}}" target="_blank") Сайт
+              .conditions(ng-if="vm.charity.vk")
+                .conditions-title
+                  a(href="{{vm.charity.vk}}" target="_blank") ВКонтакте
+              .conditions(ng-if="vm.charity.facebook")
+                .conditions-title
+                  a(href="{{vm.charity.facebook}}" target="_blank") Facebook
+              .conditions
+                .conditions-title Описание
+                .conditions-text(ng-bind-html="vm.description")
+
+          .col-md-4
+            .right-col(ng-if="user._id")
+              img.shop-logo(src='http://shop2help.ru/{{vm.charity.logo.url}}', alt='' ng-if='vm.charity.logo' style="max-widht: 160px; max-height: 140px")
+              a.blue-btn.go-to-shop(href="#" ng-if="(user.charity != vm.charity._id)" ng-click="vm.addCharity(user._id, vm.charity._id)")
+                | Хочу помогать
+              a.blue-btn.go-to-shop.liked(href="#" ng-if="(user.charity == vm.charity._id)")
+                | Я помогаю
+                br.visible-md
+
+            .right-col(ng-if="!user._id")
+              img.shop-logo(src='http://shop2help.ru/{{vm.charity.logo.url}}', alt='' ng-if='vm.charity.logo' style="max-widht: 160px; max-height: 140px")
+              a.blue-btn.go-to-shop(ui-sref='pages.home.login')
+                | Хочу помогать
+          .clearfix
+                      
+include content-page-footer

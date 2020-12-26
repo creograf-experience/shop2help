@@ -1,0 +1,56 @@
+.page__content
+  form.form(novalidate ng-submit='updateOrder()')
+    .row
+      .col-sm-6
+        .form-group
+          label Покупатель
+          p: a(ui-sref='customersShow({customerId: order.userId})') {{::order.name}}
+        .form-group
+          label Номер телефона
+          p {{::order.phone}}
+        .form-group
+          label e-mail
+          p {{::order.email}}
+        .form-group
+          label Город
+          p {{::order.city}}
+        .form-group
+          label Адрес доставки
+          p {{::order.address}}
+        .form-group
+          label Кол-во жетонов
+          p {{::order.tokens}}
+      .col-sm-6
+
+    table.table.form-table.table__build.order-table
+      thead
+        tr
+          th Фото
+          th Наименование
+          th Артикул
+          th Цена, eur.
+          th Кол-во
+          th Стоимость
+      tbody
+        tr(ng-repeat='item in order.items')
+          td: img(ng-src='{{::item.mainImage.thumb.url}}')
+          td: a(ui-sref="products.show({productId:item._id})") {{::item.title}}
+          td {{::item.sku}}
+          td {{::item.currentPrice | cents}}
+          td: {{::item.amount}}
+          td.subtotal {{::item.currentPrice * item.amount | cents}}
+
+    .row.col-sm-4
+      .manager-controls
+        .form-group
+          label Комментарий к заказу
+          textarea.form-control(ng-model='order.managerComment')
+        // .form-group
+        //   label Статус
+        //   select.form-control.select(ng-model='order.status'
+        //     ng-change='updateOrder(order)'
+        //     ng-options='status for status in statuses')
+    .row
+      .col-xs-12
+        .form-group
+          input.btn.btn-green(type='submit' value='Обновить')

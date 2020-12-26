@@ -1,0 +1,23 @@
+header.header-main
+  .content
+    a.logo(ui-sref='pages.home')
+  .enter
+    span(ui-sref='app.profile.details') {{user.login}}
+    span.icon-enter(ng-click='appCtrl.logout()')
+  .balance
+    p.cart-sum
+      span Баланс
+    p.cart-sum
+      span {{appCtrl.user.balance | price}}
+      | руб
+  .cart
+    p.cart-sum
+      span {{appCtrl.cart.totalTotal || appCtrl.cart.total | price}}
+      | руб
+    a(ui-sref='app.cart' ng-class='{unvisible: (appCtrl.cart.amountTotal<=0)}') Перейти в корзину
+.middle
+  .container
+    .content-block(ng-class='{closed: appCtrl.closed}')
+      ui-view
+  .left
+    include partials/sidebar

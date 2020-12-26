@@ -1,0 +1,8 @@
+modal(close-sref='app.products.show')
+  .box-modal.image-modal
+    .modal-close(ui-sref='app.products.show')
+    a(ui-sref='app.products.show.image({imageId: vm.nextImage._id})')
+      img(ng-src='{{vm.image.original.url}}')
+    .image-modal-controls
+      a.i-prev(ui-sref='app.products.show.image({imageId: vm.prevImage._id})')
+      a.i-next(ui-sref='app.products.show.image({imageId: vm.nextImage._id})')

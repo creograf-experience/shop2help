@@ -1,0 +1,17 @@
+modal
+  #enter.box-modal
+    .modal-close(ui-sref='pages.home')
+      img.close(src="landing/img/close-red.png" alt="")
+    form(novalidate ng-submit='vm.logIn()')
+      .modal-title Вход
+      .alert-error(ng-show='vm.error') {{vm.error}}
+      input(type='text' placeholder='Логин' ng-model='vm.login' required)
+      form-error(ng-show='vm.errors.login') {{vm.errors.login}}
+      input(type='password' placeholder='Пароль' ng-model='vm.password' required)
+      a.forgot-link(ui-sref='pages.home.forgotPass') Забыли пароль?
+      button.blue-btn(type='submit') Войти
+      //- .acc
+      //-   span У меня еще нет аккаунта
+      //-   br
+      //-   //- a(ui-sref='pages.home.register' ) Зарегистрироваться
+      //-   a(href='#' ) Зарегистрироваться

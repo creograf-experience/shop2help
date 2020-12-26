@@ -1,0 +1,53 @@
+include content-page-header
+
+.callback.content-page
+  .container
+    .row.max-width
+      .page-path
+        a.main-blue(href='/', target='_self')
+          | Главная 
+        |> Обратная связь
+      .content-title
+        | Обратная связь
+      .row.max-width.block-wrapper
+        //- .col-lg-6.col-md-12
+        //-   .left-col.column
+        //-     .block-title
+        //-       | Вы можете связаться с нами, используя
+        //-       br
+        //-       | следующие координаты:
+        //-     .row
+        //-       .col-lg-6.col-md-4.col-sm-5.col-xs-12
+        //-         | Телефон службы поддержки:
+        //-       .col-lg-6.col-md-8.col-sm-7.col-xs-12.second-col
+        //-         span.blue-text.phone
+        //-           | 8 800 900 90 90
+        //-     .row
+        //-       .col-lg-6.col-md-4.col-sm-5.col-xs-12
+        //-         | Напишите нам на почту:
+        //-       .col-lg-6.col-md-8.col-sm-7.col-xs-12.second-col
+        //-         a.blue-text(href='mailto:moneyback@gmail.com')
+        //-           | moneyback@gmail.com
+        //-     .row
+        //-       .col-lg-6.col-md-4.col-sm-5.col-xs-12
+        //-         | Skype службы поддержки:
+        //-       .col-lg-6.col-md-8.col-sm-7.col-xs-12.second-col
+        //-         span.blue-text
+        //-           | moneybackmanager
+        .col-md-12
+          .right-col.column(ng-if="vm.showForm")
+            .block-title
+              |  Отправьте сообщение администрации через форму ниже
+            form.callback-form(ng-submit="vm.newCallback()")
+              input.name(type='text', placeholder='Ваше имя' ng-model="vm.name")
+              input.email(type='email', placeholder='Email для ответа' ng-model="vm.email")
+              textarea.message(cols='30', rows='10', placeholder='Текст сообщения' ng-model="vm.body")
+              button.blue-btn(type='submit') Отправить
+          .right-col.column(ng-if="!vm.showForm")
+            .block-title
+              | Спасибо за оставленный отзыв.
+              br
+              | Ваше мнение очень важно для нас.
+        .vertical-line.visible-lg
+          img(src='/landing/img/callback-line-dashed.png', alt='')
+include content-page-footer

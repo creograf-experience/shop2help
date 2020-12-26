@@ -1,0 +1,34 @@
+.page__title
+  h1 Магазины
+.page__cpanel
+  a.add__page(ui-sref='shops.add')
+    span
+      | +
+    | Добавить
+  a.btn.btn-gray(ui-sref='shops.import')
+    span.glyphicon.glyphicon-upload
+    | Импортировать
+
+.page__content
+  .form-group
+    label Название
+    input.form-control(ng-model='globalFilter.name' ng-change='updateFilter()')
+
+  div
+    table.table__build.form-table.width-max(ng-table='tableParams' export-csv='csv')
+      tr(ng-repeat='shop in $data')
+        td.name-order(data-title="'Имя'" sortable="'name'")
+          | {{::shop.name}}
+        td(data-title="'Логотип'")
+          img.shop-logo(src='{{shop.photo.thumb.url}}', alt='' ng-if='!shop.logo')
+          img.shop-logo(src='{{shop.logo}}', alt='' ng-if='shop.logo')
+        td(data-title="'Видимость на сайте'")  
+          span(ng-if='shop.isVisible' style='color: green;') Да
+          span(ng-if='!shop.isVisible' style='color: red;') Нет
+        td
+          a.btn.btn-sm.btn-primary(ui-sref='shops.show({shopId: shop._id})')
+            span
+          button.btn.btn-sm.btn-danger(
+            ng-really-click='deleteShop(shop)'
+            ng-really-message='Удалить запись?')
+            span

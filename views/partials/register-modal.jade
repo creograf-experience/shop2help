@@ -1,0 +1,23 @@
+modal
+  #reg.box-modal
+    .modal-close(ui-sref='pages.home')
+      img.close(src="landing/img/close-red.png" alt="")
+    form(name='vm.regForm' ng-submit='vm.register()' novalidate)
+      .modal-title Регистрация
+      input(type='text' placeholder='Имя'
+        ng-model='vm.newUser.name' name='name' required)
+      form-error(ng-show='vm.err.errors.name') {{vm.err.errors.name.message}}
+      input(type='email' placeholder='E-mail'  ng-change='vm.validateEmail()'
+        ng-model='vm.newUser.email' name='email' required)
+      form-error(ng-show='vm.err.errors.email') {{vm.err.errors.email.message}}
+      form-error(ng-show='vm.regForm.email.$error.backend') Пользователь с таким email существует
+      .captcha-desc Введите код с картинки
+      input.cap(type='text' ng-model='vm.newUser.captcha' name='captcha'
+         ng-change='vm.validateCaptcha()' required)
+      img.captcha(src='/captcha.jpg' refreshable-captcha)
+      form-error(ng-show='vm.err.message') {{vm.err.message}}
+      button.blue-btn(type='submit') Зарегистрироваться
+      .acc
+        span У меня есть аккаунт
+        br
+        a(href='/login') Войти

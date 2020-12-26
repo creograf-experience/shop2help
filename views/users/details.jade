@@ -1,0 +1,64 @@
+h2.main-head
+  | Личные данные
+  button.btn-blue(ui-sref='app.profile.details.changePin') Сменить pin-код
+  button.btn-blue(ui-sref='app.profile.details.changePass') Сменить пароль
+form(ng-submit='vm.updateUser()' novalidate)
+  table.profil-table.width-585.table
+    tr
+      td(colspan='2').notification(ng-show='vm.showUpdated') Данные обновлены
+    //- tr
+    //-   td Логин
+    //-   td
+    //-     input(type='text' ng-model='vm.user.login' disabled)
+    tr
+      td Фамилия
+      td
+        input(type='text' ng-model='vm.user.surname')
+    tr
+      td Имя
+      td
+        input(type='text' ng-model='vm.user.name')
+    tr
+      td Отчество
+      td
+        input(type='text' ng-model='vm.user.lastname')
+    tr
+      td E-mail
+      td
+        input(type='email' ng-model='vm.user.email')
+    tr
+      td Skype
+      td
+        input(type='text' ng-model='vm.user.skype')
+    tr
+      td Телефон
+      td
+        input(type='text' ng-model='vm.user.phone')
+    tr
+      td Аккаунт okpay
+      td
+        input(type='text' ng-model='vm.user.okpay')
+    tr
+      td Город
+      td
+        ui-select(ng-model='vm.user.city' theme='selectize')
+          ui-select-match {{vm.user.city}}
+          ui-select-choices(
+            repeat='city in vm.cities | filter: $select.search | limitTo: 50'
+          ) {{city}}
+    tr
+      td.valign-top Адрес проживания
+      td
+        textarea.adress(ng-model='vm.user.address')
+    tr
+      td.valign-top
+        | Паспортные данные
+        br
+        small (серия, номер)
+      td
+        input(type='text' ng-model='vm.user.passport')
+    tr
+      td
+      td
+        input(type='submit' value='Сохранить').btn-grey
+

@@ -1,0 +1,8 @@
+modal
+  #change.box-modal
+    .modal-close(ui-sref='pages.home')
+      img.close(src="landing/img/close-red.png" alt="")
+    .modal-title Сброс пароля
+    .alert-error(ng-show='vm.error') {{vm.error}}
+    input(type='text' placeholder='Ваш логин' ng-model='vm.email')
+    button.blue-btn( ng-click='vm.sendResetEmail()') Выслать код для сброса

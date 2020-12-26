@@ -1,0 +1,19 @@
+.page__title
+  h1 Добавить новый магазин
+.page__content
+  label Название
+  input.form-control(ng-model='vm.item.name')
+  span.file-attach(ng-if = 'vm.item.file.name') {{vm.item.file.name}}
+  .wrap-input-photo
+    button.pink-border(ngf-select
+      ngf-change='vm.addPhoto($files)'
+      ngf-pattern="'image/jpeg,image/png'")
+      span Обзор
+  //- label Наш процент
+  //- input.form-control(ng-model='vm.item.ourPercent')
+  //- label Покупателю
+  //- input.form-control(ng-model='vm.item.customerPercent')
+  label Описание
+  textarea.form-control(ui-tinymce='tinymceOptions' ng-model='vm.item.description')
+
+  button(ng-click='vm.addShop()') Добавить

@@ -1,0 +1,35 @@
+.page__title
+  h1 Промокоды
+
+.page__cpanel
+  a.add__page(ui-sref='shops.add-promo')
+    span
+      | +
+    | Добавить
+  a.btn.btn-gray(ng-click="vm.synchronizePromo()")
+    span.glyphicon.glyphicon-download
+    | Синхронизировать
+  img.promo-load-img(ng-if="vm.isProcessing" src="/landing//img/load.gif")
+  span(ng-if="vm.isLoaded" style="color: #3a9c3f;") Успешно загружено {{vm.loadCount}} элементов
+
+.page__content
+  .form-group
+    label Поиск
+    .forms-grouping
+      input.form-control(ng-model="vm.searchString" ng-change='vm.search()' placeholder="магазин, название, код")
+
+  table.table__build.width-max(ng-table='tableParams')
+    tr(ng-repeat='promo in $data')
+      td
+       img(src='{{promo.image}}')
+      td(data-title="'Акция'") {{promo.short_name}}
+      td(data-title="'Код'") {{promo.promocode}}
+      td(data-title="'Магазин'") {{promo.campaign.name}}
+      td(data-title="'Действует до'" ) {{promo.date_end | date: 'dd.MM.yyyy'}}
+      td.act(data-title="'Операции'")
+        a.btn.btn-sm.btn-primary(ui-sref='shops.edit-promo({promoId: promo._id})')
+          span
+        button.btn.btn-sm.btn-danger(
+          ng-really-click='vm.deletePromo(promo)'
+          ng-really-message='Удалить запись?')
+          span

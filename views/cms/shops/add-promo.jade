@@ -1,0 +1,29 @@
+.page__title
+  h1 Добавить новый промокод
+.page__content
+  label Код
+  input.form-control(ng-model='vm.item.code')
+  label Магазин
+  .form-group
+    ui-select(ng-model='vm.item.shop' required)
+      ui-select-match {{$select.selected.name}}
+      ui-select-choices(repeat='shop in vm.shops | filter: {name:$select.search}')
+        div {{shop.name}}
+  label Название
+  input.form-control(ng-model='vm.item.name')
+  label Скидка
+  input.form-control(ng-model='vm.item.discount')
+  label Описание
+  textarea.form-control(ng-model='vm.item.description')
+  label Ссылка
+  input.form-control(ng-model='vm.item.url')
+  .input-group
+    label Действует до
+    .input-group
+      input.form-control(type='text' ng-model='vm.item.periodTo' disabled
+        datepicker-options='vm.dateOptions'
+        datepicker-popup='{{vm.dateOptions.format}}' is-open="vm.fromOpen" close-text='Закрыть')
+      .input-group-btn
+        button.btn.btn-default(type='button' ng-click='vm.toggle($event)')
+          i.glyphicon.glyphicon-calendar
+  button(ng-click='vm.addPromo()') Добавить

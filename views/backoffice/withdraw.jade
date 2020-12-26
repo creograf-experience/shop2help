@@ -1,0 +1,24 @@
+include ../pages/content-page-header
+include backoffice-menu
+.backoffice
+  .content-page.withdraw
+    .container
+      .row.max-width
+        .content-title Я помогаю
+        .recommended-shops.s2
+          div(ng-if="vm.userCharity")
+            a(ui-sref="pages.charity") Добавить
+            .cards-wrapper
+              .card
+                img.shop-logo(ui-sref="pages.view-charity({vm.userCharity: userCharity._id})" src='http://shop2help.ru/{{vm.userCharity.logo.url}}', alt='' ng-if='vm.userCharity.logo' style="max-widht: 160px; max-height: 140px")
+                div
+                  img.close(src='landing/img/close-red.png', alt='' ng-click="vm.deleteCharity()")
+                img.line(src='landing/img/s2-card-line.png', alt='')
+                img.line-hover(src='landing/img/s2-card-line-hover.png', alt='')
+                a.shop-name(ui-sref="pages.view-charity({charityId: vm.userCharity._id})") {{vm.userCharity.name}}
+
+          div(ng-if="!vm.userCharity")
+            span У вас не добавлено ни одной благотворительной организации
+            div(style="margin-top: 20px")
+              a(href="/charity") Перейти к списку благотворительных организаций
+include ../pages/content-page-footer

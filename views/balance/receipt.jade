@@ -1,0 +1,517 @@
+doctype html
+html
+  head
+    meta(http-equiv='Content-Type', content='text/html; CHARSET=utf-8')
+    title
+    style(type='text/css').
+      body { background: #ffffff; margin: 0; font-family: Arial; font-size: 8pt; font-style: normal; }
+      tr.R0{ height: 15px; }
+      tr.R0 td.R22C1{ text-align: center; vertical-align: top; overflow: hidden;border-left: #000000 2px solid; border-top: #000000 1px solid; }
+      tr.R0 td.R22C2{ text-align: left; vertical-align: top; border-left: #000000 1px solid; border-top: #000000 1px solid; }
+      tr.R0 td.R22C3{ text-align: right; vertical-align: top; border-left: #000000 1px solid; border-top: #000000 1px solid; }
+      tr.R0 td.R22C4{ text-align: left; vertical-align: top; border-left: #000000 1px solid; border-top: #000000 1px solid; }
+      tr.R0 td.R22C6{ text-align: right; vertical-align: top; border-left: #000000 1px solid; border-top: #000000 1px solid; border-right: #000000 2px solid; }
+      tr.R0 td.R3C7{ border-left: #000000 1px solid; border-bottom: #000000 1px solid; }
+      tr.R0 td.R3C8{ border-bottom: #000000 1px solid; }
+      tr.R0 td.R5C7{ font-family: Arial; font-size: 9pt; font-style: normal; text-align: left; vertical-align: top; border-left: #000000 1px solid; border-top: #000000 1px solid; }
+      tr.R0 td.R7C7{ font-family: Arial; font-size: 8pt; font-style: normal; text-align: left; vertical-align: medium; border-left: #000000 1px solid; border-top: #ffffff 0px none; border-bottom: #000000 1px solid; }
+      tr.R0 td.R9C1{ font-family: Arial; font-size: 14pt; font-style: normal; font-weight: bold; vertical-align: medium; }
+      tr.R1{ height: 17px; }
+      tr.R1 td.R19C1{ font-family: Arial; font-size: 9pt; font-style: normal; vertical-align: top; }
+      tr.R1 td.R19C5{ font-family: Arial; font-size: 9pt; font-style: normal; font-weight: bold; vertical-align: top; }
+      tr.R1 td.R1C22{ font-family: Arial; font-size: 9pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; }
+      tr.R1 td.R1C24{ font-family: Arial; font-size: 9pt; font-style: normal; text-align: left; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #ffffff 0px none; border-right: #000000 1px solid; }
+      tr.R1 td.R1C7{ font-family: Arial; font-size: 9pt; font-style: normal; vertical-align: top; border-left: #000000 1px solid; border-top: #000000 1px solid; }
+      tr.R1 td.R21C1{ font-family: Arial; font-size: 9pt; font-style: normal; font-weight: bold; text-align: center; vertical-align: medium; border-left: #000000 2px solid; border-top: #000000 2px solid; }
+      tr.R1 td.R21C2{ font-family: Arial; font-size: 9pt; font-style: normal; font-weight: bold; text-align: center; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 2px solid; }
+      tr.R1 td.R21C6{ font-family: Arial; font-size: 9pt; font-style: normal; font-weight: bold; text-align: center; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 2px solid; border-right: #000000 2px solid; }
+      tr.R1 td.R24C6{ font-family: Arial; font-size: 9pt; font-style: normal; font-weight: bold; text-align: right; vertical-align: top; }
+      tr.R1 td.R27C1{ font-family: Arial; font-size: 9pt; font-style: normal; }
+      tr.R1 td.R36C1{ font-family: Arial; font-size: 9pt; font-style: normal; font-weight: bold; }
+      tr.R1 td.R36C19{ text-align: right; border-bottom: #000000 1px solid; }
+      tr.R1 td.R36C7{ border-bottom: #000000 1px solid; }
+      tr.R1 td.R4C22{ font-family: Arial; font-size: 9pt; font-style: normal; vertical-align: top; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; }
+      tr.R1 td.R4C24{ font-family: Arial; font-size: 9pt; font-style: normal; text-align: left; vertical-align: top; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; }
+      tr.R1 td.R4C7{ font-family: Arial; font-size: 9pt; font-style: normal; text-align: left; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; }
+      tr.R1 td.R4C9{ font-family: Arial; font-size: 9pt; font-style: normal; text-align: left; vertical-align: medium; border-top: #000000 1px solid; }
+      tr.R11{ height: 9px; }
+      tr.R11 td.R11C1{ border-bottom: #000000 2px solid; }
+      tr.R11 td.R23C1{ border-top: #000000 2px solid; }
+      tr.R13{ height: 18px; }
+      tr.R13 td.R13C1{ font-family: Arial; font-size: 9pt; font-style: normal; vertical-align: top; }
+      tr.R13 td.R13C5{ font-family: Arial; font-size: 9pt; font-style: normal; font-weight: bold; vertical-align: top; }
+      tr.R2{ height: 16px; }
+      tr.R2 td.R2C22{ font-family: Arial; font-size: 9pt; font-style: normal; vertical-align: top; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; }
+      tr.R2 td.R2C24{ font-family: Arial; font-size: 9pt; font-style: normal; text-align: left; vertical-align: top; border-left: #000000 1px solid; border-top: #ffffff 0px none; border-bottom: #000000 1px solid; border-right: #000000 1px solid; }
+      tr.R2 td.R30C1{ font-family: Arial; font-size: 9pt; font-style: normal; }
+      tr.R29{ height: 10px; }
+      tr.R29 td.R29C1{ font-family: Arial; font-size: 9pt; font-style: normal; }
+      tr.R33{ height: 31px; }
+      tr.R33 td.R33C1{ font-family: Arial; font-size: 9pt; font-style: normal; }
+      tr.R6{ height: 20px; }
+      table {table-layout: fixed; padding: 0px; padding-left: 2px; vertical-align:bottom; border-collapse:collapse;width: 100%; font-family: Arial; font-size: 8pt; font-style: normal; }
+      td { padding: 0px; padding-left: 2px; overflow:hidden; }
+  body(style='background: #ffffff; margin: 0; font-family: Arial; font-size: 8pt; font-style: normal; ')
+    table(style='width:100%; height:0px; ', cellspacing='0')
+      col(width='7')
+      col(width='21')
+      col(width='21')
+      col(width='21')
+      col(width='26')
+      col(width='15')
+      col(width='21')
+      col(width='21')
+      col(width='21')
+      col(width='21')
+      col(width='21')
+      col(width='21')
+      col(width='21')
+      col(width='21')
+      col(width='17')
+      col(width='16')
+      col(width='16')
+      col(width='17')
+      col(width='21')
+      col(width='21')
+      col(width='21')
+      col(width='21')
+      col(width='23')
+      col(width='21')
+      col(width='21')
+      col(width='21')
+      col(width='21')
+      col(width='21')
+      col(width='21')
+      col(width='21')
+      col(width='21')
+      col(width='21')
+      col(width='12')
+      tr.R0
+        td
+      tr.R1
+        td
+          span
+        td
+          span
+        td
+          span
+        td
+          span
+        td
+          span
+        td
+          span
+        td
+          span
+        td.R1C7(colspan='15', rowspan='2')
+          div(style='width:100%;height:32px;overflow:hidden;')= bank
+        td.R1C22(colspan='2')
+          span(style='white-space:nowrap;max-width:0px;') БИК
+        td.R1C24(colspan='9')
+          span(style='white-space:nowrap;max-width:0px;')= bankBic
+        td
+      tr.R2
+        td
+          span
+        td
+          span
+        td
+          span
+        td
+          span
+        td
+          span
+        td
+          span
+        td
+          span
+        td.R2C22(colspan='2', rowspan='2')
+          div(style='width:100%;height:30px;overflow:hidden;')
+            span(style='white-space:nowrap;max-width:0px;') Сч. №
+        td.R2C24(colspan='9', rowspan='2')
+          div(style='width:100%;height:30px;overflow:hidden;')
+            span(style='white-space:nowrap;max-width:0px;')= corAccount
+        td
+      tr.R0
+        td
+          span
+        td
+          span
+        td
+          span
+        td
+          span
+        td
+          span
+        td
+          span
+        td
+          span
+        td.R3C7(colspan='15')
+          span(style='white-space:nowrap;max-width:0px;') Банк получателя
+        td
+      tr.R1
+        td
+          span
+        td
+          span
+        td
+          span
+        td
+          span
+        td
+          span
+        td
+          span
+        td
+          span
+        td.R4C7(colspan='2')
+          span(style='white-space:nowrap;max-width:0px;') ИНН
+        td.R4C9(colspan='6')
+          span(style='white-space:nowrap;max-width:0px;')= inn
+        td.R4C7(colspan='2')
+          span(style='white-space:nowrap;max-width:0px;') КПП
+        td.R4C9(colspan='5')
+          span(style='white-space:nowrap;max-width:0px;')= kpp
+        td.R4C22(colspan='2', rowspan='4')
+          div(style='width:100%;height:66px;overflow:hidden;')
+            span(style='white-space:nowrap;max-width:0px;') Сч. №
+        td.R4C24(colspan='9', rowspan='4')
+          div(style='width:100%;height:66px;overflow:hidden;')
+            span(style='white-space:nowrap;max-width:0px;')= account
+        td
+      tr.R0
+        td
+          span
+        td
+          span
+        td
+          span
+        td
+          span
+        td
+          span
+        td
+          span
+        td
+          span
+        td.R5C7(colspan='15', rowspan='2')
+          div(style='width:100%;height:34px;overflow:hidden;')= receiver
+        td
+      tr.R6
+        td
+          div(style='position:relative; height:20px;width: 100%; overflow:hidden;')
+            span
+        td
+          div(style='position:relative; height:20px;width: 100%; overflow:hidden;')
+            span
+        td
+          div(style='position:relative; height:20px;width: 100%; overflow:hidden;')
+            span
+        td
+          div(style='position:relative; height:20px;width: 100%; overflow:hidden;')
+            span
+        td
+          div(style='position:relative; height:20px;width: 100%; overflow:hidden;')
+            span
+        td
+          div(style='position:relative; height:20px;width: 100%; overflow:hidden;')
+            span
+        td
+          div(style='position:relative; height:20px;width: 100%; overflow:hidden;')
+            span
+        td
+          div(style='width:100%;height:20px;overflow:hidden;')
+      tr.R0
+        td
+          span
+        td
+          span
+        td
+          span
+        td
+          span
+        td
+          span
+        td
+          span
+        td
+          span
+        td.R7C7(colspan='15')
+          span(style='white-space:nowrap;max-width:0px;') Получатель
+        td
+      tr
+        td
+      tr.R0
+        td
+          span
+        td.R9C1(colspan='32', rowspan='2')
+          div(style='width:100%;height:29px;overflow:hidden;')
+            span(style='white-space:nowrap;max-width:0px;') Счет на оплату № #{number} от #{date}
+        td
+      tr.R0
+        td
+          span
+        td
+      tr.R11
+        td
+          div(style='position:relative; height:9px;width: 100%; overflow:hidden;')
+            span
+        td.R11C1(colspan='32')
+          div(style='position:relative; height:9px;width: 100%; overflow:hidden;')
+            span
+        td
+          div(style='width:100%;height:9px;overflow:hidden;')
+      tr.R11
+        td
+          div(style='width:100%;height:9px;overflow:hidden;')
+      tr.R13
+        td
+          span
+        td.R13C1(colspan='4', rowspan='2')
+          div(style='width:100%;height:32px;overflow:hidden;')
+            span(style='white-space:nowrap;max-width:0px;')
+              | Поставщик
+              br
+              | (Исполнитель):
+        td.R13C5(colspan='28', rowspan='2')
+          div(style='width:100%;height:32px;overflow:hidden;')
+            | #{receiver}, ИНН #{inn}, КПП #{kpp}
+        td
+      tr.R0
+        td
+          div(style='position:relative; height:15px;width: 100%; overflow:hidden;')
+            span
+        td
+          div(style='width:100%;height:15px;overflow:hidden;')
+      tr.R11
+        td
+          div(style='width:100%;height:9px;overflow:hidden;')
+      tr.R13
+        td
+          span
+        td.R13C1(colspan='4', rowspan='2')
+          div(style='width:100%;height:32px;overflow:hidden;')
+            span(style='white-space:nowrap;max-width:0px;')
+              | Покупатель
+              br
+              | (Заказчик):
+        td.R13C5(colspan='28', rowspan='2')
+          div(style='width:100%;height:32px;overflow:hidden;')= receiver
+        td
+      tr.R0
+        td
+          div(style='position:relative; height:15px;width: 100%; overflow:hidden;')
+            span
+        td
+          div(style='width:100%;height:15px;overflow:hidden;')
+      tr.R11
+        td
+          div(style='width:100%;height:9px;overflow:hidden;')
+      tr.R11
+        td
+          div(style='width:100%;height:9px;overflow:hidden;')
+    table(style='width:100%; height:0px; ', cellspacing='0')
+      col(width='7')
+      col(width='32')
+      col(width='328')
+      col(width='54')
+      col(width='42')
+      col(width='87')
+      col(width='99')
+      col
+      tr.R1
+        td
+          span
+        td.R21C1
+          span(style='white-space:nowrap;max-width:0px;') №
+        td.R21C2
+          span(style='white-space:nowrap;max-width:0px;') Товары (работы, услуги)
+        td.R21C2
+          span(style='white-space:nowrap;max-width:0px;') Кол-во
+        td.R21C2
+          span(style='white-space:nowrap;max-width:0px;') Ед.
+        td.R21C2
+          span(style='white-space:nowrap;max-width:0px;') Цена
+        td.R21C6
+          span(style='white-space:nowrap;max-width:0px;') Сумма
+        td
+          span
+        td
+      tr.R0
+        td
+          span
+        td.R22C1
+          span(style='white-space:nowrap;max-width:0px;') 1
+        td.R22C2 пополнение счета на сайте ayratex.com
+        td.R22C3
+          span(style='white-space:nowrap;max-width:0px;') 1
+        td.R22C4
+          span(style='white-space:nowrap;max-width:0px;') шт
+        td.R22C3
+          span(style='white-space:nowrap;max-width:0px;')= total
+        td.R22C6
+          span(style='white-space:nowrap;max-width:0px;')= total
+        td
+          span
+        td
+    table(style='width:100%; height:0px; ', cellspacing='0')
+      col(width='7')
+      col(width='32')
+      col(width='75')
+      col(width='190')
+      col(width='54')
+      col(width='42')
+      col(width='151')
+      col(width='98')
+      col
+      tr.R11
+        td
+          div(style='position:relative; height:9px;width: 100%; overflow:hidden;')
+            span
+        td.R23C1
+          div(style='position:relative; height:9px;width: 100%; overflow:hidden;')
+            span
+        td.R23C1
+          div(style='position:relative; height:9px;width: 100%; overflow:hidden;')
+            span
+        td.R23C1
+          div(style='position:relative; height:9px;width: 100%; overflow:hidden;')
+            span
+        td.R23C1
+          div(style='position:relative; height:9px;width: 100%; overflow:hidden;')
+            span
+        td.R23C1
+          div(style='position:relative; height:9px;width: 100%; overflow:hidden;')
+            span
+        td.R23C1
+          div(style='position:relative; height:9px;width: 100%; overflow:hidden;')
+            span
+        td.R23C1
+          div(style='position:relative; height:9px;width: 100%; overflow:hidden;')
+            span
+        td
+          div(style='position:relative; height:9px;width: 100%; overflow:hidden;')
+            span
+        td
+          div(style='width:100%;height:9px;overflow:hidden;')
+      tr.R1
+        td.R24C6(colspan='7')
+          span(style='white-space:nowrap;max-width:0px;') Итого:
+        td.R24C6
+          span(style='white-space:nowrap;max-width:0px;')= total
+        td
+          span
+        td
+      tr.R1
+        td.R24C6(colspan='7')
+          span(style='white-space:nowrap;max-width:0px;') Без налога (НДС)
+        td.R24C6
+          span(style='white-space:nowrap;max-width:0px;') -
+        td
+          span
+        td
+      tr.R1
+        td.R24C6(colspan='7')
+          span(style='white-space:nowrap;max-width:0px;') Всего к оплате:
+        td.R24C6
+          span(style='white-space:nowrap;max-width:0px;')= total
+        td
+          span
+        td
+    table(style='width:100%; height:0px; ', cellspacing='0')
+      col(width='7')
+      col(width='21')
+      col(width='21')
+      col(width='21')
+      col(width='26')
+      col(width='15')
+      col(width='21')
+      col(width='21')
+      col(width='21')
+      col(width='21')
+      col(width='21')
+      col(width='21')
+      col(width='21')
+      col(width='21')
+      col(width='17')
+      col(width='16')
+      col(width='16')
+      col(width='17')
+      col(width='21')
+      col(width='21')
+      col(width='21')
+      col(width='21')
+      col(width='23')
+      col(width='21')
+      col(width='21')
+      col(width='21')
+      col(width='21')
+      col(width='21')
+      col(width='21')
+      col(width='21')
+      col(width='21')
+      col(width='21')
+      col(width='12')
+      //- tr.R1
+      //-   td
+      //-     span
+      //-   td.R27C1(colspan='32')
+      //-     span(style='white-space:nowrap;max-width:0px;') Всего наименований 1, на сумму 100 000,00 руб.
+      //-   td
+      //- tr.R1
+      //-   td
+      //-     span
+      //-   td.R19C5(colspan='31') Сто тысяч рублей 00 копеек
+      //-   td
+      //-     span
+      //-   td
+      tr.R29
+        td
+          div(style='width:100%;height:10px;overflow:hidden;')
+      tr.R2
+        td
+          span
+        td.R30C1(colspan='32') Внимание!
+        td
+      tr.R2
+        td
+          span
+        td.R30C1(colspan='32') Оплата данного счета означает согласие с условиями поставки товара.
+        td
+      tr.R2
+        td
+          span
+        td.R30C1(colspan='32')
+          | Уведомление об оплате обязательно, в противном случае не гарантируется наличие товара на складе.
+        td
+      tr.R33
+        td
+          span
+        td.R33C1(colspan='32')
+          | Товар отпускается по факту прихода денег на р/с Поставщика, самовывозом, при наличии доверенности и паспорта.
+        td
+      tr.R11
+        td
+          div(style='width:100%;height:9px;overflow:hidden;')
+      tr
+        td
+      tr.R1
+        td
+          span
+        td.R36C1(colspan='6')
+          span(style='white-space:nowrap;max-width:0px;') Предприниматель
+        td.R36C7
+          span
+        td.R36C7
+          span
+        td.R36C7
+          span
+        td.R36C7(colspan='9')
+          span
+        td.R36C19(colspan='14')
+        td
+    div(style='position:absolute;left:8px; top:15px;padding-top:30px')
+      img(src='/resources/logo-footer.png', alt='', width='116')
+    div(style='position:absolute;  left: 500px;top: 400px;opacity: 0.6;')
+      img(src='/resources/stamp.png', alt='', width='116', height='116')

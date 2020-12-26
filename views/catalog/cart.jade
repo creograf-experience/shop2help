@@ -1,0 +1,55 @@
+h2.main-head Корзина
+.main
+  table.cart-table.all-table
+    tr
+      th
+        label.checkbox
+          input(type='checkbox' ng-model='vm.allMarked' ng-change='vm.toggleAll()')
+          span
+      th Фото
+      th Артикул
+      th Название товара
+      th Цена
+      th.amount Кол-во
+      th.amount Жетоны
+      th Сумма
+      th(ng-if='vm.hasDelivery  && !vm.cart.selfDelivery') Доставка
+    tr(ng-repeat='item in vm.cart.items track by item._id')
+      td
+        label.checkbox
+          input(type='checkbox' ng-model='item.marked' ng-change='vm.updateMarked()')
+          span
+      td.cart-image
+        img(ng-src='{{::item.mainImage.thumb.url}}' alt='{{::item.title}}' title='{{::item.title}}')
+      td {{::item.sku}}
+      td {{::item.title}}
+      td {{::item.price | price}} руб
+      td
+        counter(amount='item.amount' change='vm.updateCart()')
+      td {{item.tokens}}
+      td {{item.currentPrice * item.amount | price}} руб
+      td(ng-if='(vm.hasDelivery && !vm.cart.selfDelivery)')
+        span(ng-if='item.hasDelivery') {{500 * item.amount}} руб
+
+  .itog
+    label.checkbox
+      input(type='checkbox' ng-model='vm.allMarked' ng-change='vm.toggleAll()')
+      span Выбрано {{vm.markedCount}} товаров
+    button.btn-blue(ng-click='vm.removeMarked()') Удалить
+    .all-itog Итого: {{vm.cart.totalTotal | price}} руб
+  label.checkbox.self-delivery-check(ng-if='vm.hasDelivery')
+    input(type='checkbox' ng-model='vm.cart.selfDelivery' ng-change='vm.updateTokens()')
+    span Самовывоз
+  .zakaz(ng-if='(vm.cart.items.length > 0)')
+    select.select.cart-city-select(ng-if='vm.hasDelivery && !vm.cart.selfDelivery'
+      ng-model='vm.user.city'
+      ng-options='city for city in vm.cities' required)
+    input.delivery-address(type='text' placeholder='адрес доставки'
+      ng-if='vm.hasDelivery  && !vm.cart.selfDelivery'
+      ng-disabled='vm.cart.selfDelivery'
+      ng-model='vm.user.address' required)
+    button.btn-grey(ng-click='vm.checkout()' ng-if='(vm.cart.total <= appCtrl.user.balance)') Оформить заказ
+
+    button.btn-grey(ui-sref='app.balance.load' ng-if='(vm.cart.total > appCtrl.user.balance)') Пополнить баланс
+    p.gib-monis(ng-if='(vm.cart.total > appCtrl.user.balance)') На вашем счете недостаточно средств
+    .clearfix

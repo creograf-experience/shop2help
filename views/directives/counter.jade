@@ -1,0 +1,5 @@
+.number(ng-form='form')
+  input(type="text" class="product-amount" ng-change='cyka()' name='counter'
+    ng-model='counter' only-digits ng-pattern='/[0-9]+/')
+  span.minus(ng-click='decrement()')
+  span.plus(ng-click='increment()')

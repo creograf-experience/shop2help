@@ -1,0 +1,18 @@
+include ../pages/content-page-header
+include backoffice-menu
+.backoffice
+  .content-page.stores
+    .container
+      .row.max-width
+        .content-title Избранные магазины
+        .recommended-shops.s2
+          .cards-wrapper
+            .card(ng-repeat="shop in vm.stores")
+              img.close(src='landing/img/close-red.png', alt='' ng-click="vm.deleteStore(shop)")
+              img.shop-logo(ui-sref="pages.view-shop({shopId: shop.shopId})" src='{{shop.photo.thumb.url}}', alt='' ng-if='!shop.logo')
+              img.shop-logo(ui-sref="pages.view-shop({shopId: shop.shopId})" src='{{shop.logo}}', alt='' ng-if='shop.logo')
+              img.line(src='landing/img/s2-card-line.png', alt='')
+              img.line-hover(src='landing/img/s2-card-line-hover.png', alt='')
+              a.shop-name(ui-sref="pages.view-shop({shopId: shop._id})")  {{shop.name}}
+
+include ../pages/content-page-footer

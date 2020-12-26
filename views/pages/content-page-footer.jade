@@ -1,0 +1,35 @@
+.content-page
+  section.s6.bottom-menu
+    .container
+      .row.max-width
+        .menu-wrapper
+          .col-lg-8.col-md-12
+            nav
+              ul
+                li  
+                  a(ui-sref="pages.charity" ng-class='{active: (state.current.url==="charity")}') Благотворительные организации
+                li
+                  a(ui-sref="pages.shops" ng-class='{active: (state.current.url==="shops")}') Магазины
+                li
+                  a(ui-sref="pages.promo-codes" ng-class='{active: (state.current.url==="promo-codes")}') Промокоды
+                li
+                  a(ui-sref="pages.callback" ng-class='{active: (state.current.url==="callback")}') Обратная связь
+                li
+                  a(ui-sref="pages.faq" ng-class='{active: (state.current.url==="faq")}') ЧАВО
+            .wrapper.visible-xs(ng-class="user.login ? 'hidden' : '' ")
+              .signin(ui-sref="pages.home.login" )
+                img.icon-men(src='/landing/img/icon-men.png', alt='')
+                .icon-text Вход
+              a.blue-btn Регистрация
+          .col-lg-4.col-md-12
+            .wrapper.hidden-xs(ng-class="user.login ? 'hidden' : '' ")
+              .signin(style="display:flex;align-items:center" ui-sref="pages.home.login" ng-class="user.login ? 'hidden' : '' ")
+                img.icon-men(style="margin-right: 20px" src='/landing/img/icon-men.png', alt='')
+                .icon-text Вход
+              a.blue-btn Регистрация
+          .clearfix
+  footer
+    .container
+      .row.max-width
+        .copyright Copyright © 2019. Все права защищены
+

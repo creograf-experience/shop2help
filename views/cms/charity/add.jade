@@ -1,0 +1,62 @@
+.page__title
+  h1 Карточка благотворительности
+.page__content
+  label Название
+  input.form-control(ng-model='vm.item.name')
+
+  label Лого
+  div.file-attach(ng-if = 'vm.item.file.name') {{vm.item.file.name}}
+  .wrap-input-photo
+    button.pink-border(ngf-select
+      ngf-change='vm.addPhoto($files)'
+      ngf-pattern="'image/jpeg,image/png'")
+      span Обзор
+
+  label Сайт
+  input.form-control(ng-model='vm.item.website')
+
+  label ВКонтакте
+  input.form-control(ng-model='vm.item.vk')
+
+  label Facebook
+  input.form-control(ng-model='vm.item.facebook')
+
+  label Email
+  input.form-control(ng-model='vm.item.email')
+
+  label Описание
+  textarea.form-control(ui-tinymce='tinymceOptions' ng-model='vm.item.description')
+
+  label ФИО ответственного лица
+  input.form-control(ng-model='vm.item.ownerFIO')
+
+  label Телефон
+  input.form-control(ng-model='vm.item.contactPhone')
+
+  label ИНН
+  input.form-control(ng-model='vm.item.INN')
+  
+  label КПП
+  input.form-control(ng-model='vm.item.KPP')
+
+  label Рассчетный счет
+  input.form-control(ng-model='vm.item.checkingAccount')
+
+  label Корр. счет
+  input.form-control(ng-model='vm.item.correspondentAccount')
+
+  label БИК
+  input.form-control(ng-model='vm.item.BIK')
+
+  label Название банка
+  input.form-control(ng-model='vm.item.bankName')
+
+  label ЮР. адрес
+  input.form-control(ng-model='vm.item.legalAdress')
+
+  label Почтовый адрес
+  input.form-control(ng-model='vm.item.postalAdress')
+
+  hr
+
+  button(ng-click='vm.addCharity()') Добавить

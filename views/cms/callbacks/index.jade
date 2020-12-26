@@ -1,0 +1,17 @@
+.page__title
+  h1 Обратная связь
+.page__content
+  div
+    table.table__build.form-table.width-max(ng-table='tableParams')
+      tr(ng-repeat='callback in $data')
+        td.name-order(data-title="'Имя'" sortable="'name'")
+          | {{::callback.name}}
+        td(data-title="'Email'")
+          | {{::callback.email}}
+        td(data-title="'Сообщение'")
+          | {{::callback.body}}
+        td
+          button.btn.btn-sm.btn-danger(
+            ng-really-click='deleteCallback(callback)'
+            ng-really-message='Удалить запись?')
+            span

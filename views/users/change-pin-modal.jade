@@ -1,0 +1,15 @@
+modal(close-sref='app.profile.details')
+#change.box-modal
+  .modal-close(ui-sref='app.profile.details')
+  h3 Поменять PIN
+  .alert-error(ng-show='vm.error') {{vm.error}}
+  form(ng-submit='vm.changePin()' name='vm.form' novalidate)
+    input(type='password' placeholder='текущий PIN' name='pinCurrent'
+      ng-model='vm.pinCurrent' required ng-change='vm.setCurrentValid()'
+    only-digits ng-pattern='/^[0-9]{4}$/')
+    form-error(ng-show='vm.form.pinCurrent.$error.wrongpin') Старый PIN указан неверно
+    input(type='password' placeholder='новый PIN' ng-model='vm.pin'
+      required only-digits ng-pattern='/^[0-9]{4}$/')
+    input(type='password' placeholder='повторите новый PIN' only-digits
+      ng-model='vm.pinConfirm' input-match='vm.pin' required)
+    input(type='submit' value='Установить PIN').btn-grey

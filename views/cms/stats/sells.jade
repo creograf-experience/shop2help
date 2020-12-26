@@ -1,0 +1,60 @@
+.page__title
+  h1 Статистика
+
+.page__content.padding2
+  .form-group
+    .period-form.form-inline
+      .input-group
+        label Период c
+        .input-group
+          input.form-control(type='text' ng-model='periodFrom' disabled
+          ng-change='refreshStats()'
+            datepicker-options='dateOptions'
+            datepicker-popup='{{dateOptions.format}}' is-open="fromOpen" close-text='Закрыть')
+          .input-group-btn
+            button.btn.btn-default(type='button' ng-click='toggleFrom($event)')
+              i.glyphicon.glyphicon-calendar
+      .input-group
+        label по
+        .input-group
+          input.form-control(type='text' ng-model='periodTo' disabled
+            ng-change='refreshStats()'
+            datepicker-options='dateOptions'
+            datepicker-popup='{{dateOptions.format}}' is-open="toOpen" close-text="Закрыть")
+          .input-group-btn
+            button.btn.btn-default(type='button' ng-click='toggleTo($event)')
+              i.glyphicon.glyphicon-calendar
+
+    .forms-grouping
+      p
+        strong Всего покупок:
+        .stats-count
+          span количество {{stats.all.count}}
+          br
+          span на сумму {{stats.all.cart | curr}} р. | кэшбэк {{stats.all.payment | curr}} р.
+          br
+          span прибыль {{stats.all.profit | curr}} р.
+      p
+        strong В обработке:
+        .stats-count
+          span количество {{stats.pending.count}}
+          br
+          span на сумму {{stats.pending.cart | curr}} р. | кэшбэк {{stats.pending.payment | curr}} р.
+          br
+          span прибыль {{stats.pending.profit | curr}} р.
+      p
+        strong Подтверждённые:
+        .stats-count
+          span количество {{stats.approved.count}}
+          br
+          span на сумму {{stats.approved.cart | curr}} р. | кэшбэк {{stats.approved.payment | curr}} р.
+          br
+          span прибыль {{stats.approved.profit | curr}} р.
+      p
+        strong Отклонённые:
+        .stats-count
+          span количество {{stats.declined.count}}
+          br
+          span на сумму {{stats.declined.cart | curr}} р. | кэшбэк {{stats.declined.payment | curr}} р.
+          br
+          span прибыль {{stats.declined.profit | curr}} р.

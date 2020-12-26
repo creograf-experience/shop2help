@@ -1,0 +1,51 @@
+.main-left-wrap(ng-class='{closed: appCtrl.closed}')
+  .main-left(ng-class='{closed: appCtrl.closed}')
+    a.menu-btn(ng-click='appCtrl.closed=!appCtrl.closed')
+      img(src='/resources/menu.png')
+    .l-menu
+      ul
+        li
+          span.icon-1
+          a.sidebar-header Аккаунт
+          ul
+            li
+              a(ui-sref='app.profile.details') Личные данные
+            li(ng-if='appCtrl.user.parent')
+              a(ui-sref='app.profile.sponsor') Спонсор
+        li
+          span.icon-2
+          a.sidebar-header Структура
+          ul
+            li
+              a(ui-sref='app.reports.matrix.index') Матрица
+
+        li
+          span.icon-3
+          a.sidebar-header Товары
+          ul
+            li(ng-repeat='category in appCtrl.categories')
+              a(ui-sref='app.categories.show({slug: category.slug})') {{::category.title}}
+            li.menu-item-bold
+              a(ui-sref='app.orders') История заказов
+            li.menu-item-bold
+              a(ui-sref='app.cart' ng-show='appCtrl.cart.amountTotal>0') Корзина
+
+        li
+          span.icon-4
+          a.sidebar-header Баланс
+          ul
+            li
+              a(ui-sref='app.balance.load') Пополнить
+            li
+              a(ui-sref='app.balance.withdraw') Перевести
+            li
+              a(ui-sref='app.balance.history') История
+
+        li
+          span.icon-5
+          a.sidebar-header Новости
+          ul
+            li
+              a(ui-sref='app.news.index') Новости
+            li
+              a(ui-sref='app.announcements.index') Акции

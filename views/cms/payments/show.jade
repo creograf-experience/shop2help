@@ -1,0 +1,48 @@
+.page__title
+  h1 Платеж № {{::payment.code}}
+
+.page__content.padding2
+  form.form-horizontal.payment-details
+    .form-group
+      label.control-label.col-sm-3 Пользователь
+      .col-sm-3
+        a(ui-sref='customersShow({customerId: payment.user._id})') {{::payment.user.login}}
+      .col-sm-3(ng-if="(payment.status == 'pending')")
+        span(ng-class='{danger: remain < 0}')
+          | Останется: {{remain / 100 | currency:''}} руб
+
+    .form-group
+      label.control-label.col-sm-3 Назначение
+      .col-sm-3 {{::payment.purpose}}
+
+    .form-group
+      label.control-label.col-sm-3 Способ
+      .col-sm-3 {{::payment.method}}
+
+    .form-group
+      label.control-label.col-sm-3 Номер платежного документа
+      .col-sm-3 {{::payment.number}}
+
+    .form-group
+      label.control-label.col-sm-3 Сумма
+      .col-sm-3 {{payment.totalMod / 100 | currency:''}}
+
+    .form-group
+      label.control-label.col-sm-3 Адрес okpay
+      .col-sm-3 {{::payment.okpayEmail}}
+
+    .form-group
+      label.control-label.col-sm-3 Банковские реквизиты получателя
+      .col-sm-3 {{::payment.comment}}
+
+    .form-group
+      label.control-label.col-sm-3 Состояние
+      .col-sm-3 {{::statuses[payment.status]}}
+
+    .form-group.submit__group(ng-if="(payment.status=='pending')")
+      .col-sm-3
+        button.btn.btn-gray(ng-really-click='rejectPayment(payment)'
+          ng-really-message='Действительно отказать в платеже?') Отказать в платеже
+      .col-sm-3
+        button.btn.btn-green(ng-really-click='finishPayment(payment)'
+          ng-really-message='Подтвердить завершение платежа?') Подтвердить платеж

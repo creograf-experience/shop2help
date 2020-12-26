@@ -1,0 +1,49 @@
+doctype html
+html(lang='ru')
+  head
+    //if lt IE 9
+      script(src='http://html5shiv.googlecode.com/svn/trunk/html5.js')
+    title Shop2Help
+    meta(charset='utf-8')
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="fragment" content="!")
+    meta(name='imagetoolbar', content='no')
+    meta(name='msthemecompatible', content='no')
+    meta(name='cleartype', content='on')
+    meta(name='HandheldFriendly', content='True')
+    meta(name='format-detection', content='telephone=no')
+    meta(content='width=device-width, initial-scale=1.0', name='viewport' id='viewport')
+    meta(name='format-detection', content='address=no')
+    meta(name='apple-mobile-web-app-capable', content='yes')
+    meta(name='apple-mobile-web-app-status-bar-style', content='black-translucent')
+    meta(name='application-name', content='Money Back')
+    base(href='/')
+    link(rel='stylesheet', type='text/css', href='libs/bootstrap-grid-3.3.1.min.css')
+    link(rel='stylesheet', href='/landing/css/reset.css')
+    link(rel='stylesheet', type='text/css', href='/libs/slick/slick.css')
+    link(rel='stylesheet', type='text/css',href='libs/font-awesome-4.5.0/css/font-awesome.min.css')
+    link(rel='stylesheet', type='text/css',href='libs/animate.css')
+    link(rel='stylesheet', href='/landing/css/common.css')
+    link(rel='stylesheet', href='/landing/css/content-pages.css')
+    link(rel='stylesheet', href='/landing/css/media.css')
+    
+
+  body
+    ui-view
+
+    if process.env.NODE_ENV == 'production'
+      script(src="/js/dist/public.min.js")
+    else
+      script(src="/js/dist/public.js")
+
+    script(src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js")
+    script(type='text/javascript', src='/libs/slick/slick.min.js')
+    script(src='/libs/jquery.malihu.PageScroll2id.js')
+    script.
+      jQuery.os =  { name: (/(win|mac|linux|sunos|ipad|iphone|ipod)/.exec(navigator.platform.toLowerCase()) || [u])[0].replace('sunos', 'solaris') };
+      if(jQuery.os.name == 'iphone' ||jQuery.os.name == 'ipad' ||jQuery.os.name == 'ipod'){$("nav .top_nav_button").css('margin-left','-40px');};
+    //- script.
+    //-   $(".top_nav_button").click(function(){
+    //-     $("header .visible-1400.second-nav ul").slideToggle();
+    //-   });
+    div(ui-view='modal' autoscroll='false')

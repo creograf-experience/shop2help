@@ -1,0 +1,47 @@
+include content-page-header
+
+.promo-codes.content-page.view-promocodes
+  .container
+    .row.max-width
+      .page-path
+        a.main-blue(href='/', target='_self')
+          | Главная 
+        |> Промокоды
+      .content-title
+        | Промокоды
+      .search-line
+        input(type='text', placeholder='Введите запрос...' ng-model="vm.searchString" ng-keypress="vm.searchKey($event)")
+        button.search-btn(ng-click="vm.search()")
+          img.loupe(src='/landing/img/loupe.png', alt='')
+          span.text() Искать
+      .row
+        .promo-list
+          .promo-action(ng-repeat="code in vm.promo")
+            .row
+              .col-md-2.col-sm-6.col-xs-6(ui-sref="pages.view-shop({shopId: code.campaign.id})")
+                //- img(src='{{code.image}}' class='code-image')
+                .image-promo-logo(style='background-image: url({{code.image}});')
+              .col-md-2.col-sm-6.col-xs-6
+                .promo-days
+                  img.watch(src='/landing/img/promo-watch.png', alt='')
+                  | {{code.date_end | date:'dd.MM.yyyy'}}
+              .clearfix.visible-sm.visible-xs
+              .col-md-2.col-sm-6.col-xs-12(ng-if="code.discount")
+                .promo-name {{code.short_name}}
+              .col-md-6.col-sm-12.col-xs-12.center(ng-if="!code.discount")
+                .promo-name {{code.short_name}}
+              .col-md-4.col-sm-6.col-xs-12(ng-if="code.discount" )
+                .percent(data-fittext data-fittext-max="60" style="margin-right: 50px;")
+                  | {{code.discount}}
+              .clearfix.visible-sm.visible-xs
+              .col-md-2.col-sm-12.col-xs-12
+                a.blue-btn.show-btn(ng-if="user._id && !code.isShow" href='' ng-click="vm.showPromo(code)") Показать код
+                .promo-name(ng-if="code.isShow" style="margin-right: 60px;") {{code.promocode}}
+                a.blue-btn.show-btn(href="{{code.goto_link}}?subid={{user._id}}" target="_blank" ng-if="code.isShow" style="padding-top: 4px;") Перейти в магазин
+              a.blue-btn.btn-singin(ui-sref="pages.home.activate"  ng-if="!user._id" style="margin-top: -55px;" ) Регистрация
+            .row
+              .col-md-7.col-sm-12.col-xs-12
+                ul.shop-categories
+                  li(ng-repeat='cat in code.categories' ng-click="vm.searchCat(cat)") {{cat}}
+
+include content-page-footer

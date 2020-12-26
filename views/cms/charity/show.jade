@@ -1,0 +1,66 @@
+.page__title
+  h1 {{charity.name}}
+
+.page__content
+  label Видимость на сайте
+  input.form-control(ng-model='charity.isVisible' type="checkbox" style='width: 25px;')
+  br
+  label Название
+  input.form-control(ng-model='charity.name')
+
+  label Лого
+  div.file-attach(ng-if = 'charity.file.name') {{charity.file.name}}
+  .wrap-input-photo
+    button.pink-border(ngf-select
+      ngf-change='addPhoto($files)'
+      ngf-pattern="'image/jpeg,image/png'")
+      span Обзор
+
+  label Сайт
+  input.form-control(ng-model='charity.website')
+
+  label ВКонтакте
+  input.form-control(ng-model='charity.vk')
+
+  label Facebook
+  input.form-control(ng-model='charity.facebook')
+
+  label Email
+  input.form-control(ng-model='charity.email')
+
+  label Описание
+  textarea.form-control(ui-tinymce='tinymceOptions' ng-model='charity.description')
+
+  label ФИО ответственного лица
+  input.form-control(ng-model='charity.ownerFIO')
+
+  label Телефон
+  input.form-control(ng-model='charity.contactPhone')
+
+  label ИНН
+  input.form-control(ng-model='charity.INN')
+  
+  label КПП
+  input.form-control(ng-model='charity.KPP')
+
+  label Рассчетный счет
+  input.form-control(ng-model='charity.checkingAccount')
+
+  label Корр. счет
+  input.form-control(ng-model='charity.correspondentAccount')
+
+  label БИК
+  input.form-control(ng-model='charity.BIK')
+
+  label Название банка
+  input.form-control(ng-model='charity.bankName')
+
+  label ЮР. адрес
+  input.form-control(ng-model='charity.legalAdress')
+
+  label Почтовый адрес
+  input.form-control(ng-model='charity.postalAdress')
+
+  hr
+  
+button(ng-click='updateCharity()') Сохранить

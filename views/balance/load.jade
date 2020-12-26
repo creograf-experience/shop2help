@@ -1,0 +1,48 @@
+h2.main-head Пополнить баланс
+table.add-money
+  tr
+    td Текущий баланс: {{appCtrl.user.balance | price}}
+.main.balance-page
+  h3.add-balance Выберите способ оплаты:
+
+  .payment-select
+    label.var
+      input(type='radio' ng-model='vm.paymentType' value='okpay')
+      span
+        img(src='/resources/ok.jpg' alt='okpay' title='okpay')
+    label.var
+      input(type='radio' ng-model='vm.paymentType' value='bank')
+      span
+        | Выставить
+        br
+        | счет
+  .clearfix
+  table.add-money.add
+    tr
+      td Пополнить:
+      td
+        input(type='text' placeholder='5 000' ng-model='vm.total'
+          number-input ng-change='vm.calcRemain()')
+        | руб
+      td Остаток: {{vm.remain | price}}
+
+  form(ng-show="(vm.paymentType=='okpay')" method='post' action='https://www.okpay.com/process.html')
+    input(type='hidden' name='ok_ipn' value='{{vm.cbLink}}')
+
+    input(type='hidden' name='ok_receiver' value='{{vm.receiver}}')
+    input(type='hidden' name='ok_item_1_name' value='popolnenie scheta polzovatelya {{vm.user.login | translit}} na Ayratex.com')
+    input(type='hidden' name='ok_item_1_price' value='{{vm.total}}')
+    input(type='hidden' name='ok_currency' value='RUB')
+    input(type='hidden' name='ok_language' value='RU')
+    input(type='hidden' name='ok_return_success' value='{{vm.successLink}}')
+    input(type='hidden' name='ok_return_fail' value='{{vm.failLink}}')
+
+    input(type='hidden' name='ok_payer_first_name' value='{{vm.user.name | translit}}')
+    input(type='hidden' name='ok_payer_last_name' value='{{vm.user.surname | translit}}')
+    input(type='hidden' name='ok_payer_email' value='{{vm.user.email}}')
+    input(type='hidden' name='ok_payer_phone' value='{{vm.user.phone}}')
+    input(type='hidden' name='ok_payer_city' value='{{vm.user.city | translit}}')
+    input(type='hidden' name='ok_payer_street' value='{{vm.user.address | translit}}')
+    button.btn-grey(target='_blank' type='submit') Перейти к оплате
+
+  button.btn-grey(target='_blank' ng-click='vm.createPayment()' ng-show="(vm.paymentType!='okpay')") Перейти к оплате

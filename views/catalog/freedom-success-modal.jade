@@ -1,0 +1,9 @@
+modal(close-sref='app.orders')
+  #done.freedom.box-modal
+    .modal-close(ui-sref='app.orders')
+    h3 Доступ к freedom-koop.com
+    p
+      | Поздравляем! Вы получили доступ к&nbsp;
+      a(href='http://freedom-koop.com' target='_blank') freedom-koop.com
+      | . Используйте ваши логин и пароль для входа в систему.
+    input(type="button" value="Закрыть" ui-sref='pages.home').btn-grey

@@ -1,0 +1,31 @@
+include ../pages/content-page-header
+include backoffice-menu
+.backoffice
+  .content-page.history
+    .container
+      .row.max-width
+        .content-title История зачислений
+        .period
+          input.calend-input(type='text' date-time view='date' format='dd.MM.yyyy'
+            min-view='date' ng-model='vm.rangeStart' auto-close='true' ng-change='vm.updateList()')
+          span.calend-link
+          input.calend-input(type='text' date-time view='date' format='dd.MM.yyyy'
+            min-view='date' ng-model='vm.rangeEnd' auto-close='true' ng-change='vm.updateList()')
+          span.calend-link
+
+        select.type-select(ng-model='vm.type' ng-change='vm.updateList()' ng-options='type.value as type.name for type in vm.types' )
+        button.blue-btn.submit-btn.refresh-btn(ng-click='vm.updateList()' ) Обновить
+        table.history-table#toCSC
+            thead
+              tr
+                th Дата
+                th Сумма
+                th Описание
+            tdoby
+              tr(ng-repeat='p in vm.payments')
+                td {{p.date | date:'dd.MM.yyyy'}}
+                td {{p.total | curr}} руб.
+                td(ng-if='p.purpose != "bonus"') {{p.comment}} 
+                td(ng-if='p.purpose == "bonus"') {{p.comment}} от пользователя {{p.fromUser.login}}
+        .clearfix
+        button.blue-btn.submit-btn(export-to-csv) Сохранить в Excel

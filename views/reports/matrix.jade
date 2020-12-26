@@ -1,0 +1,13 @@
+.matrix-page.clearfix
+  h2.main-head Матрица
+  .main
+    .my-structure
+      .description 
+        .payed - Жетон оплачен
+        .notpayed - Жетон не оплачен
+        .empty - Нет жетона
+      .goto-to-token
+        label.select-token-label Перейти к жетону
+        select.select.select-token(ng-options='token._id as token.number for token in vm.tokens'
+          ng-model='vm.selectedTokenId' ng-change='vm.changeMatrix()')
+    ui-view

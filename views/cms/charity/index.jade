@@ -1,0 +1,36 @@
+.page__title
+  h1 Благотворительности
+.page__cpanel
+  a.add__page(ui-sref='charity.add')
+    span
+      | +
+    | Добавить
+//-   a.btn.btn-gray(ui-sref='shops.import')
+//-     span.glyphicon.glyphicon-upload
+//-     | Импортировать
+
+.page__content
+  .form-group
+    label Название
+    input.form-control(ng-model='globalFilter.name' ng-change='updateFilter()')
+
+  div
+    table.table__build.form-table.width-max(ng-table='tableParams' export-csv='csv')
+      tr(ng-repeat='charity in $data')
+        td.name-order(data-title="'Имя'" sortable="'name'")
+          | {{::charity.name}}
+        td(data-title="'Логотип'")
+          //- img.shop-logo(src='{{shop.photo.thumb.url}}', alt='' ng-if='!shop.logo')
+          img.shop-logo(src='{{location.origin}}/{{charity.logo.url}}', alt='' ng-if='charity.logo' style="max-widht: 160px; max-height: 140px")
+        td(data-title="'Видимость на сайте'")  
+          span(ng-if='charity.isVisible' style='color: green;') Да
+          span(ng-if='!charity.isVisible' style='color: red;') Нет
+        td
+          a.btn.btn-sm.btn-info(ui-sref="charity.transfer({charityId: charity._id})")
+            span
+          a.btn.btn-sm.btn-primary(ui-sref='charity.show({charityId: charity._id})')
+            span
+          button.btn.btn-sm.btn-danger(
+            ng-really-click='deleteCharity(charity)'
+            ng-really-message='Удалить запись?')
+            span

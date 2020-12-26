@@ -1,0 +1,64 @@
+h2.main-head Реферал
+.main
+  table.sponsor-table
+    tr
+      td Логин
+      td {{::vm.referer.login}}
+    tr
+      td Фамилия
+      td {{::vm.referer.surname}}
+    tr
+      td Имя
+      td {{::vm.referer.name}}
+    tr
+      td Отчество
+      td {{::vm.referer.lastname}}
+    tr
+      td E-mail
+      td {{::vm.referer.email}}
+    tr
+      td Skype
+      td {{::vm.referer.skype}}
+    tr
+      td Телефон
+      td {{::vm.referer.phone}}
+    tr
+      td Город
+      td {{::vm.referer.city}}
+    tr
+      td Адрес
+      td {{::vm.referer.address}}
+    tr
+      td Квалификация прошлого периода
+      td {{::vm.referer.qualification.name}}
+    tr
+      td Прогнозируемая квалификация
+      td {{::vm.user.predictedQualification.name}}
+    tr
+      td Оборот
+      td {{::vm.referer.networth}}
+    tr
+      td Личный оборот
+      td {{::vm.referer.ownNetworth}}
+    tr(ng-if='(!vm.sponsor.isMain)')
+      td Спонсор
+      td
+        a(ng-if='(user._id == vm.sponsor._id)' ui-sref='app.reports.referer({refererId: vm.sponsor._id})') {{::vm.sponsor.login}}, {{::vm.sponsor.fio}}
+        span(ng-if='(user._id != vm.sponsor._id)') {{::vm.sponsor.login}}, {{::vm.sponsor.fio}}
+
+  a.btn-grey.btn-go-up(ng-if='user.parent != vm.sponsor._id' ui-sref='app.reports.referer({refererId: vm.sponsor._id})') Наверх
+
+
+  table.all-table.st-table.referers-table(ng-table='vm.tableParams' export-csv='csv')
+    tr(ng-repeat='referer in $data' ui-sref='app.reports.referer({refererId: referer._id})')
+      td(data-title="'Логин'" data-sortable="'login'")
+        | {{::referer.login}}
+        span.paid-customer(ng-if='referer.paidCustomer' title='совершал покупки') *
+      td(data-title="'ФИО'" data-sortable="'fio'") {{::referer.fio}}
+      td(data-title="'Город'" data-sortable="'city'") {{::referer.city}}
+      td(data-title="'Оборот сети в жетонах'" data-sortable="'networth'") {{::referer.networth}}
+      td(data-title="'Квалификация прошлого периода'" data-sortable="'qualification.name'") {{::referer.qualification.name || '0%'}}
+
+  a.btn-grey(ng-mousedown='csv.generate()'
+    ng-href='{{csv.link()}}'
+    download="оборот рефералов пользователя {{vm.referer.fio}}.csv") Сохранить в Excel

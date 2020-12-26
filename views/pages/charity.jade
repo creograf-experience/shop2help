@@ -1,0 +1,34 @@
+include content-page-header
+.shops.content-page
+  .container
+    .page-path
+      a.main-blue(ui-sref="pages.home")
+        | Главная 
+      |> Благотворительные организации
+    .row.max-width
+
+      .content-title
+        | Благотворительные организации
+      .search-line
+        input(type='text', placeholder='Введите запрос...' ng-model="vm.searchString" ng-keypress="vm.searchKey($event)")
+        button.search-btn(ng-click="vm.search()")
+          img.loupe(src='/landing/img/loupe.png', alt='')
+          span.text() Искать
+      .shops-list
+        .shop-card(ng-repeat='charity in vm.charities')
+          .row
+            .col-md-3(ui-sref="pages.view-charity({charityId: charity._id})")
+              .image-shop-logo(style='background-image: url(http://shop2help.ru/{{charity.logo.url}}); max-widht: 160px; max-height: 140px;' ng-if='charity.logo')
+            .col-md-7
+              a.shop-name(ui-sref="pages.view-charity({charityId: charity._id})" ) {{charity.name}}
+              span(ng-if="user._id")
+                a.blue-btn.go-to-shop(href="#" ng-if="(user.charity != charity._id)" ng-click="vm.addCharity(user._id, charity._id)")
+                  | Хочу помогать
+                a.blue-btn.go-to-shop.liked(href="#" ng-if="(user.charity == charity._id)")
+                  | Я помогаю
+                  br.visible-md
+              span(ng-if="!user._id")
+                a.blue-btn.go-to-shop(href="/login")
+                  | Хочу помогать
+
+include content-page-footer

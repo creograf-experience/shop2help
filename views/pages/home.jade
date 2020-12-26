@@ -1,0 +1,127 @@
+#top_botton
+  a.top(href="#landing-header")
+    i.fa.fa-arrow-circle-up
+.page-wrapper
+  section.s2.popular-shops
+    .container
+      .row.max-width
+        .title Кэшбэк в популярных магазинах
+      .row.max-width
+        .cards-wrapper
+          .card(ng-repeat = "shop in vm.shops" ui-sref="pages.view-shop({shopId: shop.shopId})")
+            img.shop-logo(src='{{shop.photo.thumb.url}}', alt='' ng-if='!shop.logo')
+            img.shop-logo(src='{{shop.logo}}', alt='' ng-if='shop.logo')
+            img.line(src='/landing/img/s2-card-line.png', alt='')
+            img.line-hover(src='/landing/img/s2-card-line-hover.png', alt='')
+            a.shop-name  {{shop.name}}
+        a.show-all(ui-sref="pages.shops")
+          | Смотреть все
+          img(src='/landing/img/arrow-down-small.png', alt='')
+  
+  section.s5.how-it-works
+    .container
+      .row-max-width
+        .title Как это работает
+        .wrap-instruction
+          .line
+            .col-md-5.col-sm-5.left-column
+              .col-md-3
+                img.howwork-icon.howwork-icon1(src='/landing/img/howwork-icon1.png', alt='')
+              .col-md-9
+                .howwork-text
+                  | Регистрируетесь на сайте
+                  
+            .col-md-2.col-sm-2
+              img.arrow.hidden-xs(src='/landing/img/howwork-arrow-gray.png', alt='')
+            .col-md-5.col-sm-5.right-column
+              .col-md-3
+                img.howwork-icon.howwork-icon2(src='/landing/img/howwork-icon2.png', alt='')
+              .col-md-9
+                .howwork-text
+                  | Устанавливаете
+                  br
+                  | расширение к браузеру
+            .clearfix
+          .line
+            .col-md-5.col-sm-5.left-column
+              .col-md-3
+                img.howwork-icon.howwork-icon3(src='/landing/img/howwork-icon3.png', alt='')
+              .col-md-9
+                .howwork-text
+                  | Выбираете благотворительную организацию,
+                  br
+                  | которая будет получать ваш кэшбэк.
+            .col-md-2.col-sm-2
+              img.arrow.hidden-xs(src='/landing/img/howwork-arrow-gray.png', alt='')
+            .col-md-5.col-sm-5.right-column
+              .col-md-3
+                img.howwork-icon.howwork-icon4(src='/landing/img/howwork-icon4.png', alt='')
+              .col-md-9
+                .howwork-text
+                  | Совершаете покупки
+                  br
+                  | в интернет-магазинах. 
+            .clearfix
+          .line
+            .col-md-5.col-sm-5.left-column
+              .col-md-3
+                img.howwork-icon.howwork-icon5(src='/landing/img/howwork-icon5.png', alt='')
+              .col-md-9
+                .howwork-text
+                  | Покупки и кэшбэк по ним
+                  br
+                  | отображаются в вашем личном кабинете.
+            .col-md-2.col-sm-2
+              img.arrow.hidden-xs(src='/landing/img/howwork-arrow-gray.png', alt='')
+            .col-md-5.col-sm-5.right-column
+              .col-md-3
+                img.howwork-icon.howwork-icon6(src='/landing/img/howwork-icon6.png', alt='')
+              .col-md-9
+                .howwork-text
+                  | Мы переводим накопленный кэшбэк в благотворительные организации 
+                  br
+                  | раз в месяц суммой
+                  br
+                  | от 10 000 рублей.
+            .clearfix
+
+  .container
+    div(style="display: flex; align-items: center; flex-direction: column; margin-top: 20px; margin-bottom: 20px; background-color: #FFF; padding: 40px 30px 60px 30px; text-align: center;")
+      p(style="margin-bottom: 30px; font-size: 45px; color: #0b1524;") Расширение Shop2Help.ru
+      p(style="font-size: 21px") Установи расширение #[a(href="https://chrome.google.com/webstore/detail/shop2help/pmoiajkpdinnfhfhfjjpahhhpilhgonj?hl=ru" target="_blank") Shop2Help] к браузеру #[a(href="https://www.google.com/intl/ru/chrome/" target="_blank") Chrome] и активируй кэшбэк в 1 клик на сайте магазина.
+
+  section.s6.bottom-menu
+    .container
+      .row.max-width
+        .menu-wrapper
+          .col-lg-8.col-md-12
+            nav
+              ul
+                li  
+                  a(ui-sref="pages.charity") Благотворительные организации
+                li
+                  a(ui-sref="pages.shops" ) Магазины
+                li
+                  a(ui-sref="pages.promo-codes" ) Промокоды
+                li
+                  a(ui-sref="pages.callback" ) Обратная связь
+                li
+                  a(ui-sref="pages.faq") ЧАВО
+            .wrapper.visible-xs
+              .signin(ui-sref="pages.home.login" )
+                img.icon-men(src='/landing/img/icon-men.png', alt='')
+                .icon-text.signin-icon Вход
+              a.blue-btn(ui-sref="pages.home.activate" ) Регистрация
+          .col-lg-4.col-md-12
+            .wrapper.hidden-xs(ng-class="user.login ? 'hidden' : '' ")
+              .signin(ui-sref="pages.home.login" style="display:flex;align-items:center")
+                img.icon-men(src='/landing/img/icon-men.png', alt='' style="margin-right: 20px")
+                .icon-text Вход
+              a.blue-btn(ui-sref="pages.home.activate" ) Регистрация
+          .clearfix
+  footer
+    .container
+      .copyright Copyright © 2019. Все права защищены
+      .developer
+        a.logo-creograf(href='http://creograf.ru/', target='_blank')
+          img(src='/landing/img/logo-creograf.png', alt='')

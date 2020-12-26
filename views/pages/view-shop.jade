@@ -1,0 +1,143 @@
+include content-page-header
+.view-shop.content-page
+  .container
+    .row.max-width
+      .page-path
+        a.main-blue(ui-sref="pages.shops")
+          | Магазины 
+        |> {{vm.shop.name}}
+      .content-title
+        | {{vm.shop.name}}
+      .row
+        .about-shop
+          .col-md-8
+            .left-col
+              .row
+                .col-md-8
+                  .shop-title
+                    | Покупки на {{vm.shop.name}} с кэшбеком
+                    img.shop-rate.visible-sm.visible-xs(src='landing/img/s4-rating-stars.png', alt='')
+                  .shop-waiting-time
+                    | Среднее время
+                    br.hidden.visible-560
+                    |  ожидания кэшбека:
+                  .shop-waiting-days
+                    | {{vm.shop.avg_hold_time}} дня
+                .col-md-4
+                  ng-rating(ng-model="vm.shop.rating" show-grade="true")
+              .conditions
+                .conditions-title Описание
+                .conditions-text(ng-bind-html="vm.description")
+                br
+                .conditions-title Уважаемые пользователи!
+                .conditions-text
+                  |Во избежание утери кэшбэка, перед переходом на сайт рекомендуем почистить историю Вашего браузера.
+                  |Для этого можете воспользоваться сочетанием клавиш Ctrl+Shift+Delete. Период за который нужно очистить историю: «за все время». Наличие в истории переходов по другим партнерским ссылкам, может стать причиной утери кэшбэка с покупок в {{vm.shop.name}}. При возникновении дополнительных вопросов, обращайтесь, в нашу службу поддержки, будем рады помочь.
+                br
+                .conditions-title
+                  |Внимание! Сумма кэшбэка начисляется в рублях и конвертируется по курсу ЦБ РФ.
+          .col-md-4
+            .right-col(ng-if="user._id")
+              img.shop-logo(src='{{vm.shop.logo}}', alt='' ng-if='vm.shop.logo')
+              img.shop-logo(src='{{vm.shop.photo.thumb.url}}', alt='' ng-if='!vm.shop.logo')
+              a.blue-btn.go-to-shop(href='{{vm.shop.gotolink}}?subid={{user._id}}&subid1={{vm.shop._id}}' target='_blank' style='display: block!important;')
+                | Перейти
+                br.visible-md
+                |  в магазин
+              //-a.blue-btn.go-to-shop(href='{{vm.shop.gotolink}}?subid=test' target='_blank')
+                | Перейти
+                br.visible-md
+                |  в магазин
+              a.blue-btn.go-to-shop(href="#" ng-if="(user.likedShop.indexOf(vm.shop._id) == -1)" ng-click="vm.addToLikeShop(user._id, vm.shop._id)")
+                | Добавить
+                br.visible-md
+                |  в избранное
+              a.blue-btn.go-to-shop.liked(href="#" ng-if="(user.likedShop.indexOf(vm.shop._id) > -1)")
+                | В избранном
+                br.visible-md
+
+            .right-col(ng-if="!user._id")
+              img.shop-logo(src='{{vm.shop.logo}}', alt='' ng-if='vm.shop.logo')
+              img.shop-logo(src='{{vm.shop.photo.thumb.url}}', alt='' ng-if='!vm.shop.logo')
+              a.blue-btn.go-to-shop(ui-sref='pages.home.activate') Регистрация
+          .clearfix
+      .row(ng-if='vm.shop.feedback.length > 0')
+        .feedbacks
+          .row.max-width
+            .feedbacks-title
+              | Отзывы об {{vm.shop.name}}
+          .row.max-width.feedback-div
+            .s4.feedback
+              .feedback-slider
+                .slide
+                  .col-md-6(ng-repeat="feedback in vm.shop.feedback")
+                    .one-fb.left-col.fedback-row
+                      .row
+                        .col-md-2
+                          img.fb-user-icon(src='{{feedback.src}}')
+                        .col-md-10
+                          .fb-name {{feedback.userName}}
+                          ng-rating(ng-model="feedback.rating" show-grade="true")
+                      .fb-text
+                        {{feedback.text}}
+      
+
+      .row
+        .promo-codes
+          .underlined-title
+            | Тарифы
+          .promo-list
+            .promo-action(ng-repeat="tariff in vm.shop.tariffs")
+              .row
+                .col-lg-5.col-md-5.col-sm-5.col-xs-12
+                  .promo-name {{tariff.name}}
+                .col-lg-2.col-md-2.col-sm-3.col-xs-12
+                  span.percent
+                    {{tariff.size}}
+                .col-lg-5.col-md-5.col-sm-5.col-xs-12
+                  .promo-name Cashback до {{tariff.hold_time}} дней
+                
+      .row.promo-codes(ng-if='vm.promo.length > 0')
+        .promo-codes
+          .underlined-title
+            | Промокоды
+        .promo-list
+          .promo-action(ng-repeat="code in vm.promo")
+            .row
+              .col-md-2.col-sm-6.col-xs-6
+                img(src='{{code.image}}' class='code-image')
+              .col-md-2.col-sm-6.col-xs-6
+                .promo-days
+                  img.watch(src='/landing/img/promo-watch.png', alt='')
+                  | {{code.date_end | date:'dd.MM.yyyy'}}
+              .clearfix.visible-sm.visible-xs
+              .col-md-2.col-sm-6.col-xs-12(ng-if="code.discount")
+                .promo-name {{code.short_name}}
+              .col-md-6.col-sm-12.col-xs-12.center(ng-if="!code.discount")
+                .promo-name {{code.short_name}}
+              .col-md-4.col-sm-6.col-xs-12(ng-if="code.discount" )
+                .percent(data-fittext data-fittext-max="60" style="margin-right: 50px;")
+                  | {{code.discount}}
+              .clearfix.visible-sm.visible-xs
+              .col-md-2.col-sm-12.col-xs-12
+                a.blue-btn.show-btn(ng-if="user._id && !code.isShow" href='' ng-click="vm.showPromo(code)") Показать код
+                .promo-name(ng-if="code.isShow" style="padding-left: 10px;") {{code.promocode}}
+                a.blue-btn.show-btn(href="{{code.goto_link}}?subid={{user._id}}" target="_blank" ng-if="code.isShow" style="padding-top: 4px;") Перейти в магазин
+              a.blue-btn.btn-singin(ui-sref="pages.home.login"  ng-if="!user._id" style="margin-top: -55px;" ) Регистрация
+            .row
+              .col-md-7.col-sm-12.col-xs-12
+                ul.shop-categories
+                  li(ng-repeat='cat in code.categories' style='cursor: default;') {{cat}}
+
+      .row
+        .recommended-shops.s2
+          .underlined-title
+            | Рекомендуемые магазины
+          .cards-wrapper
+            .card(ng-repeat="rec_shop in vm.rec" ui-sref="pages.view-shop({shopId: rec_shop.shopId})")
+              img.close(src='landing/img/close-red.png', alt='')
+              img.shop-logo(src='{{rec_shop.logo}}', alt='')
+              img.line(src='landing/img/s2-card-line.png', alt='')
+              img.line-hover(src='landing/img/s2-card-line-hover.png', alt='')
+              a.shop-name  {{rec_shop.name}}
+include content-page-footer

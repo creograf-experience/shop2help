@@ -1,0 +1,40 @@
+.content-page.container-landing.contacts.contacts-view
+  header
+    .row
+      h2 Контакты
+      .contacts-col.right-col
+
+        h4 Задайте вопрос нашему менеджеру
+        form(ng-submit='vm.createLead()' name='vm.form' novalidate)
+          input(type='text' placeholder='ФИО'
+            ng-model='vm.lead.name' name='name' required)
+          input(type='text' placeholder='Телефон'
+            ng-model='vm.lead.phone' name='phone')
+          input(type='email' placeholder='E-mail'
+            ng-model='vm.lead.email' name='email' required)
+          input(type='text' placeholder='Тема' ng-model='vm.lead.theme')
+          textarea(
+            ng-model='vm.lead.comment' name='comment' required)
+          button(type="submit").sibmit-btn.h-btn Задать вопрос
+
+      //- .contacts-col.left-col
+        table
+          //- tr
+          //-   td.icon.icon1
+          //-   td.text.text1 +7 123 123-45-67
+          //-tr.tr-sec
+          //-  td.icon.icon2
+          //-  td.text.text2
+           //-   a(href="mailto:alexandr.wic@gmail.com") alexandr.wic@gmail.com
+          //- tr
+          //-   td.icon.icon3
+          //-   td.text.text3 г. Екатеринбург, ул. Красных партизан, 110
+          //- tr
+        //- .map
+        //-   img(src="/resources/contacts_map.png", alt="")
+
+
+
+//-    p(ng-show='vm.contacts.address') Адрес: {{vm.contacts.address}}
+//-       p(ng-show='vm.contacts.phone') Телефон: {{vm.contacts.phone}}
+//-       p(ng-show='vm.contacts.email') Email: {{vm.contacts.email}}

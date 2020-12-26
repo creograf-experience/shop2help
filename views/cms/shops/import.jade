@@ -1,0 +1,15 @@
+.page__title
+  h1 Импортировать магазины
+.page__content
+  .wrap-input-photo
+    p
+      {{vm.fileName}}
+      br
+      button.pink-border(ngf-select
+        ngf-change='vm.addFile($files)'
+        )
+        span Обзор
+    p
+      button(ng-click='vm.importFromFile()') Импортировать
+    p
+      {{vm.result}}

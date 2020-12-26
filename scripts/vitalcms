@@ -1,0 +1,198 @@
+#!/bin/bash
+#
+# An init.d script for running a Node.js process as a service using Forever as
+# the process monitor. For more configuration options associated with Forever,
+# see: https://github.com/nodejitsu/forever
+#
+# This was written for Debian distributions such as Ubuntu, but should still
+# work on RedHat, Fedora, or other RPM-based distributions, since none of the
+# built-in service functions are used. So information is provided for both.
+#
+### BEGIN INIT INFO
+# Provides:             my-application
+# Required-Start:       $syslog $remote_fs
+# Required-Stop:        $syslog $remote_fs
+# Should-Start:         $local_fs
+# Should-Stop:          $local_fs
+# Default-Start:        2 3 4 5
+# Default-Stop:         0 1 6
+# Short-Description:    My Application
+# Description:          My Application
+### END INIT INFO
+#
+### BEGIN CHKCONFIG INFO
+# chkconfig: 2345 55 25
+# description: My Application
+### END CHKCONFIG INFO
+#
+# Based on:
+# https://gist.github.com/3748766
+# https://github.com/hectorcorrea/hectorcorrea.com/blob/master/etc/forever-initd-hectorcorrea.sh
+# https://www.exratione.com/2011/07/running-a-nodejs-server-as-a-service-using-forever/
+#
+# The example environment variables below assume that Node.js is installed by
+# building from source with the standard settings.
+#
+# It should be easy enough to adapt to the paths to be appropriate to a package
+# installation, but note that the packages available in the default repositories
+# are far behind the times. Most users will be building from source to get a
+# suitably recent Node.js version.
+#
+# An application name to display in echo text.
+# NAME="My Application"
+# The full path to the directory containing the node and forever binaries.
+# NODE_BIN_DIR="/usr/local/node/bin"
+# Set the NODE_PATH to the Node.js main node_modules directory.
+# NODE_PATH="/usr/local/lib/node_modules"
+# The application startup Javascript file path.
+# APPLICATION_PATH="/home/user/my-application/start-my-application.js"
+# Process ID file path.
+# PIDFILE="/var/run/my-application.pid"
+# Log file path.
+# LOGFILE="/var/log/my-application.log"
+# Forever settings to prevent the application spinning if it fails on launch.
+# MIN_UPTIME="5000"
+# SPIN_SLEEP_TIME="2000"
+
+NAME="VitalCMS"
+NODE_BIN_DIR="/usr/bin"
+NODE_PATH="/usr/bin/node"
+APPLICATION_DIR="/var/www/mlm"
+APPLICATION_PATH="./app/server.coffee"
+PIDFILE="/tmp/mlm.pid"
+LOGFILE="/var/www/mlm/log/mlm.log"
+MIN_UPTIME="5000"
+SPIN_SLEEP_TIME="2000"
+NODE_ENV="production"
+
+CAREER_PATH="./app/career.coffee"
+CAREER_PIDFILE="/tmp/career.pid"
+CAREER_LOGFILE="/var/www/mlm/log/career.log"
+
+# Add node to the path for situations in which the environment is passed.
+PATH=$NODE_BIN_DIR:$PATH
+# Export all environment variables that must be visible for the Node.js
+# application process forked by Forever. It will not see any of the other
+# variables defined in this script.
+export NODE_PATH=$NODE_PATH
+
+cd $APPLICATION_DIR
+
+start_app() {
+    echo "Starting $NAME"
+
+    forever \
+      --pidFile $PIDFILE \
+      -a \
+      -l $LOGFILE \
+      -c coffee \
+      --minUptime $MIN_UPTIME \
+      --spinSleepTime $SPIN_SLEEP_TIME \
+      --sourceDir $APPLICATION_DIR \
+      start $APPLICATION_PATH 2>&1 > /dev/null &
+    RETVAL=$?
+}
+
+start_career() {
+    echo "Starting career process"
+    forever \
+      --pidFile $CAREER_PIDFILE \
+      -a \
+      -l $CAREER_LOGFILE \
+      -c coffee \
+      --minUptime $MIN_UPTIME \
+      --spinSleepTime $SPIN_SLEEP_TIME \
+      --sourceDir $APPLICATION_DIR \
+      start $CAREER_PATH 2>&1 > /dev/null &
+    RETVAL=$?
+}
+
+start() {
+  start_app
+  start_career
+}
+
+stop_app() {
+    if [ -f $PIDFILE ]; then
+        echo "Shutting down $NAME"
+        # Tell Forever to stop the process.
+        forever \
+        --sourceDir $APPLICATION_DIR \
+        stop $APPLICATION_PATH 2>&1 > /dev/null
+        # Get rid of the pidfile, since Forever won't do that.
+        rm -f $PIDFILE
+        RETVAL=$?
+    else
+        echo "$NAME is not running."
+        RETVAL=0
+    fi
+}
+
+stop_career() {
+    if [ -f $CAREERPIDFILE ]; then
+        echo "Shutting down career process"
+        # Tell Forever to stop the process.
+        forever \
+        --sourceDir $APPLICATION_DIR \
+        stop $CAREER_PATH 2>&1 > /dev/null
+        # Get rid of the pidfile, since Forever won't do that.
+        rm -f $CAREER_PIDFILE
+        RETVAL=$?
+    else
+        echo "$NAME is not running."
+        RETVAL=0
+    fi
+}
+
+stop() {
+  stop_app
+  stop_career
+}
+
+restart() {
+    stop
+    start
+}
+
+status() {
+    # On Ubuntu this isn't even necessary. To find out whether the service is
+    # running, use "service my-application status" which bypasses this script
+    # entirely provided you used the service utility to start the process.
+    #
+    # The commented line below is the obvious way of checking whether or not a
+    # process is currently running via Forever, but in recent Forever versions
+    # when the service is started during Chef provisioning a dead pipe is left
+    # behind somewhere and that causes an EPIPE exception to be thrown.
+    # forever list | grep -q "$APPLICATION_PATH"
+    #
+    # So instead we add an extra layer of indirection with this to bypass that
+    # issue.
+    echo `forever list` | grep -q "$APPLICATION_PATH"
+    if [ "$?" -eq "0" ]; then
+        echo "$NAME is running."
+        RETVAL=0
+    else
+        echo "$NAME is not running."
+        RETVAL=3
+    fi
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status
+        ;;
+    restart)
+        restart
+        ;;
+    *)
+        echo "Usage: {start|stop|status|restart}"
+        exit 1
+        ;;
+esac
+exit $RETVAL

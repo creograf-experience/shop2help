@@ -1,0 +1,52 @@
+include ../pages/content-page-header
+include backoffice-menu
+.backoffice
+  .content-page.profile
+    .container
+      .row.max-width
+        .content-title Профиль
+        form(ng-submit='vm.updateUser()' novalidate )
+          table(class="profile-table")
+            tr
+              td(colspan='2').notification(ng-show='vm.showUpdated') Данные обновлены
+            tr
+              td(class="left-col") Имя:
+              td
+                input(type='text' ng-model='vm.user.name')
+            tr
+              td(class="left-col") Отчество:
+              td
+                input(type='text' ng-model='vm.user.lastname')
+            tr
+              td(class="left-col") Фамилия:
+              td
+                input(type='text' ng-model='vm.user.surname')
+            tr
+              td(class="left-col") Дата рождения:
+              td
+                input(type='text' date-time view='date' format='dd.MM.yyyy'
+                min-view='date' ng-model='vm.user.dateOfBirth' auto-close='true')
+            tr
+              td(class="left-col") Пол:
+              td
+                select.gender-select(ng-model='vm.user.gender' ng-options='userGender.value as userGender.label for userGender in vm.userGenders' )
+            tr
+              td(class="left-col") Фото:
+              td
+                button.blue-btn.upload-btn(ngf-select
+                  ngf-change='vm.addPhoto($files)'
+                  ngf-pattern="'image/jpeg,image/png'") Загрузить
+            tr
+              td
+              td
+                span(ng-if="vm.selectFile") Выбран файл {{vm.selectFile.name}}
+            tr
+              td
+              td
+                img(ng-if="vm.user.photo" src="http://shop2help.ru/{{vm.user.photo.url}}", alt="/landing/img/user-avatar.png" class="user-avatar" style="max-widht: 160px; max-height: 140px")
+                img(ng-if="!vm.user.photo" src="/landing/img/user-avatar.png",class="user-avatar")
+            tr
+              td
+              td
+                button.blue-btn.submit-btn(type='submit') Сохранить
+include ../pages/content-page-footer

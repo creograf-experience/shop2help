@@ -1,0 +1,44 @@
+h2.main-head История заказов
+.main
+  table.all-table.st-table.history-description
+    thead
+      tr
+        th Номер заказа
+        th Дата заказа
+        th Сумма
+        th Жетоны
+        th Детали
+    tbody(ng-repeat='order in vm.orders track by order._id')
+      tr.order-info
+        td N {{::order.code}}
+        td {{::order.createdAt | date:'dd.MM.yyyy'}}
+        td {{::order.totalTotal | price}} руб
+        td {{::order.tokens}}
+        td
+          a.span(ng-click='order.isOpen=!order.isOpen') {{order.isOpen ? 'Скрыть' : 'Показать'}}
+      tr.cart-description
+        td(colspan='5').no-padding
+          .accordion-header
+            h3
+            .accordion-close
+          .accordion-collapse(ng-show='order.isOpen')
+            table.order-description
+              tr
+                th Артикул
+                th Название товара
+                th Промо-код
+                th Цена
+                th Кол-во
+                th Сумма
+              tr(ng-repeat='item in order.items')
+                td {{::item.sku}}
+                td {{::item.title}}
+                td
+                  span(ng-if='item.hasPromo') {{::item.promoCode}}
+                td {{::item.currentPrice | price}} руб
+                td {{::item.amount}}
+                td {{::item.currentPrice * item.amount | price}} руб
+
+            .about-order
+              h4
+                span Итого: {{::order.total | price}} руб

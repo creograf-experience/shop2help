@@ -1,0 +1,27 @@
+h2.main-head Спонсор
+table.profil-table.width-585.table(ng-if='vm.sponsor')
+  tr
+    td Логин
+    td: input(type='text' disabled value='{{::vm.sponsor.login}}')
+  tr
+    td Фамилия
+    td: input(type='text' disabled value='{{::vm.sponsor.surname}}')
+  tr
+    td Имя
+    td: input(type='text' disabled value='{{::vm.sponsor.name}}')
+  tr
+    td Отчество
+    td: input(type='text' disabled value='{{::vm.sponsor.lastname}}')
+  tr
+    td E-mail
+    td: input(type='text' disabled value='{{::vm.sponsor.email}}')
+  tr
+    td Skype
+    td: input(type='text' disabled value='{{::vm.sponsor.skype}}')
+  tr
+    td Телефон
+    td: input(type='text' disabled value='{{::vm.sponsor.phone}}')
+  tr
+    td Город
+    td: input(type='text' disabled value='{{::vm.sponsor.city}}')
+p(ng-if='!vm.sponsor') У вас нет спонсора

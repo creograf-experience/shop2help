@@ -1,0 +1,8 @@
+h2.main-head Новости
+.main.news-table(infinite-scroll='vm.nextPage()' infinite-scroll-disabled='(vm.busy || !vm.active)')
+  .news-preview(ng-repeat='news in vm.news track by news._id')
+    h4.news-head
+      a(ui-sref='app.news.show({slug: news.slug})') {{::news.title}}
+    .news-date {{::news.date | date:'dd.MM.yyyy'}}
+    button.btn-blue(ui-sref='app.news.show({slug: news.slug})') Посмотреть
+  .clearfix

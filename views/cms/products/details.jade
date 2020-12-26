@@ -1,0 +1,132 @@
+form(novalidate ng-submit='updateProduct()' name='productForm' ng-model='product')
+  .row
+    .product-description.col-md-8
+      .form-group
+        label Наименование
+        input.form-control(type='text' name='title'
+          ng-model='product.title' required
+          ng-model-options='modelOptions')
+      .form-group
+        label Описание
+        textarea.form-control(
+          ui-tinymce='tinymceOptions'
+          name='body' ng-model='product.body'
+          ng-model-options='modelOptions')
+      .form-group
+        label Анонс
+        textarea.form-control(
+          name='body' ng-model='product.preview'
+          ng-model-options='modelOptions')
+      .form-group
+        label Ссылка
+        input.form-control(type='text' ng-model='product.slug')
+      .form-group
+        label Категории
+        ui-select(multiple ng-model="categoriesTitles" theme='bootstrap'
+          on-select='addCategory($item)' on-remove='removeCategory($item)')
+          ui-select-match(placeholder="Выберите категорию...") {{$item.title}}
+          ui-select-choices(
+            repeat="category.title as category in categories | filter: {title: $select.search}")
+            div
+             div(ng-style='nestedStyle(category)') {{category.title}}
+      .form-group
+        label Связанные товары
+        ui-select(multiple ng-model="relatedTitles" theme='bootstrap'
+          on-select='addRelated($item)' on-remove='removeRelated($item)')
+          ui-select-match(placeholder="Выберите товар...") {{$item.title}}
+          ui-select-choices(
+            repeat="related.title as related in relatedProducts | filter: relatedFilter"
+            refresh='refreshRelated($select.search)' refresh-delay='500')
+            div
+              div {{related.title}}
+      .form-group
+        .checkbox
+          input(type='checkbox', id='c1' hidden ng-model='product.hasPromo')
+          label(for='c1') с промо-кодом
+        .checkbox
+          input(type='checkbox', id='c3' hidden ng-model='product.hasDelivery')
+          label(for='c3') товар требует доставки
+        .checkbox
+          input(type='checkbox', id='c2' hidden ng-model='product.forFreedom')
+          label(for='c2') дает доступ к freedom-koop.com
+
+    .col-md-4
+      .product-commerce
+        .form-group
+          label Цена
+          input.form-control(type='text' ng-model='product.price')
+        .form-group
+          label Валюта
+          input.form-control(type='text' ng-model='product.currency')
+        .form-group
+          label Артикул
+          input.form-control(type='text' name='sku' ng-model='product.sku')
+        .form-group
+          label Производитель
+          input.form-control(type='text' ng-model='product.manufact')
+        .checkbox
+          label
+            input(type='checkbox' ng-model='product.starred'
+            ng-change='updateProduct()')
+            span Новинка
+        .checkbox
+          label
+            input(type='checkbox' ng-model='product.popular'
+            ng-change='updateProduct()')
+            span Популярный
+      .product-preorder
+        .form-group
+          label Цена предзаказа
+          input.form-control(type='text' ng-model='product.preprice')
+        .form-group
+          label Когда товар будет доступен
+          .input-group
+            input.form-control(type='text' datepicker-popup='dd/MM/yyyy'
+              ng-model='product.avalibleAt' min-date='dateNow' is-open='datepickerOpened')
+            .input-group-btn
+              button.btn.btn-default(type='button' ng-click='toggleDatepicker($event)')
+                i.glyphicon.glyphicon-calendar
+      .product-storage
+        .form-group.checkbox
+          label Остаток на складе
+          input.form-control(type='text' ng-model='product.store')
+        .form-group
+          label Единица
+          input.form-control(type='text' ng-model='product.unit')
+        .form-group
+          label Масса
+          input.form-control(type='text' ng-model='product.weight')
+        .form-group
+          label Объем
+          input.form-control(type='text' ng-model='product.volume')
+
+  .row
+    .col-md-12.product-rest
+      .checkbox
+        label
+          input(type='checkbox' ng-model='product.visible'
+            ng-change='updateProduct()')
+          span видимость на сайте
+      .form-group
+        label Заголовок для SEO
+        input.form-control(type='text' ng-model='product.seotitle'
+          ng-model-options='modelOptions')
+      .form-group
+        label Ключевые слова
+        input.form-control(type='text' ng-model='product.seokeywords'
+          ng-model-options='modelOptions')
+      .form-group
+        label Описание SEO
+        input.form-control(type='text' ng-model='product.seodescr'
+          ng-model-options='modelOptions')
+      .form-group.btn-clear
+        label Прикрепить форму
+        .input-group
+          span.input-group-btn
+            button.btn.btn-default(ng-click='product.form=null'
+            type='button') Очистить
+          select.form-control.select(ng-model='product.form'
+            ng-options='form._id as form.name for form in forms')
+      .form-group
+        input.btn.btn-green(type='submit' value='Обновить'
+          ng-disabled='productForm.$invalid')

@@ -1,0 +1,108 @@
+.page__content.padding2
+  form(novalidate ng-submit='updateOptions()')
+    .mail
+      h3 Прибыль
+      .forms-grouping
+          .form-group
+            label Процент списания от суммы кэшбэка
+            input.form-control(type='text' ng-model='settings.percent')
+    .mail
+      h3 Настройки исходящей почты
+      .forms-grouping
+          .form-group
+            label Почтовый ящик
+            input.form-control(type='text' ng-model='settings.mailer.from')
+          .form-group
+            label SMTP-сервер
+            input.form-control(type='text' ng-model='settings.mailer.smtpServer')
+          .form-group
+            label Логин
+            input.form-control(type='text' ng-model='settings.mailer.user')
+          .form-group
+            label Пароль
+            input.form-control(type='password' ng-model='settings.mailer.pass')
+    
+
+    .other
+      h3 Остальные настройки
+      .forms-grouping
+          .form-group
+            label Почта админа
+            input.form-control(type='text' ng-model='settings.adminMail')
+          .form-group
+            label Почта для заказов
+            input.form-control(type='text' ng-model='settings.managerMail')
+          .clear
+    
+    .seo
+      h3 Быстрый бонус
+      .forms-grouping
+        .row
+          .col-md-7
+            .row
+              .col-sm-3
+                .input-group
+                  .input-group-addon 1
+                  input.form-control(type='text' ng-model='settings.instantBonus[0]')
+                  .input-group-addon %
+              .col-sm-3
+                .input-group
+                  .input-group-addon 2
+                  input.form-control(type='text' ng-model='settings.instantBonus[1]')
+                  .input-group-addon %
+              .col-sm-3
+                .input-group
+                  .input-group-addon 3
+                  input.form-control(type='text' ng-model='settings.instantBonus[2]')
+                  .input-group-addon %
+              .col-sm-3
+                .input-group
+                  .input-group-addon 4
+                  input.form-control(type='text' ng-model='settings.instantBonus[3]')
+                  .input-group-addon %
+      .clear
+
+
+    
+    .seo
+      h3 SEO
+      .forms-grouping
+          .form-group
+            label Заголовок
+            input.form-control(type='text' ng-model='settings.title')
+          .form-group
+            label Описание
+            input.form-control(type='text' ng-model='settings.seodescr')
+          .form-group
+            label Ключевые слова
+            input.form-control(type='text' ng-model='settings.seokeywords')
+
+    .trackers
+      h3 Настройки счетчиков и стороннего javascript
+      .forms-grouping
+          .form-group
+            label Мета-тег Google
+            input.form-control(type='text' ng-model='settings.metaGoogle')
+          .form-group
+            label Мета-тег Яндекс
+            input.form-control(type='text' ng-model='settings.metaYandex')
+          .form-group
+            label Пользовательский код
+            textarea.form-control.code-editor(rows=7 ng-model='settings.userJs')
+
+    .contacts
+      h3 Контакты
+      .forms-grouping
+          .form-group
+            label Адрес
+            input.form-control(type='text' ng-model='settings.contacts.address')
+          .form-group
+            label Телефон
+            input.form-control(type='text' ng-model='settings.contacts.phone')
+          .form-group
+            label Email
+            input.form-control(type='text' ng-model='settings.contacts.email')
+          .clear
+
+    .form-group.submit__group
+      input.btn.btn-green(type='submit' value='Сохранить')

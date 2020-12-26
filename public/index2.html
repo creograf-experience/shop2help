@@ -1,0 +1,275 @@
+<html lang="ru" class="skrollr skrollr-desktop">
+<head>
+<!--if lt IE 9script(src='http://html5shiv.googlecode.com/svn/trunk/html5.js')-->
+<title>AYROTEX</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="imagetoolbar" content="no">
+<meta name="msthemecompatible" content="no">
+<meta name="cleartype" content="on">
+<meta name="HandheldFriendly" content="True">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="address=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style"
+	content="black-translucent">
+<meta name="application-name" content="MLM">
+<link href="/css/public.css" rel="stylesheet">
+<base href="/">
+<!-- link(href='/css/jquery.formstyler.css' rel='stylesheet')-->
+
+<script src="/js/test/jquery-2.1.1.min.js"></script>
+<script src="/js/test/skrollr.min.js"></script>
+<script src="/js/test/project.js"></script>
+
+</head>
+<body style="height: 800px;">
+	<!-- uiView: undefined -->
+	<ui-view class="ng-scope"><!-- uiView: undefined -->
+	<ui-view class="ng-scope">
+	<header class="header-landing ng-scope">
+		<div class="top-menu">
+			<div class="container-landing">
+				<a ui-sref="pages.home" ui-sref-opts="{reload: true}"
+					class="logo-landing" href="/"></a>
+				<ul>
+					<li><a href="">О компании</a></li>
+					<li><a href="">Продукты</a></li>
+					<li><a href="">Обратная связь</a></li>
+					<li><a href="">Возможности</a></li>
+				</ul>
+			</div>
+			<!-- ngIf: !user._id -->
+			<a ui-sref="pages.home.register" ng-if="!user._id"
+				class="begin h-btn ng-scope" href="/register">Начать бизнес</a>
+			<!-- end ngIf: !user._id -->
+			<!-- ngIf: !user._id -->
+			<a ui-sref="pages.home.login" ng-if="!user._id"
+				class="enter-landing h-btn ng-scope" href="/login"><span><img
+					src="/resources/enter-landing.png" alt="" title=""></span>Вход</a>
+			<!-- end ngIf: !user._id -->
+			<!-- ngIf: user._id -->
+			<!-- ngIf: user._id -->
+		</div>
+	</header>
+	<div class="slider ng-scope">
+		<div mm-carousel="" class="slick slick-initialized slick-slider"
+			role="toolbar">
+			<div aria-live="polite" class="slick-list draggable">
+				<div class="slick-track" role="listbox"
+					style="opacity: 1; width: 7200px; transform: translate3d(-1440px, 0px, 0px);">
+					<div class="slider3 slick-slide slick-cloned" data-slick-index="-1"
+						aria-hidden="true" tabindex="-1" style="width: 1440px;">
+						<div class="container-landing">
+							<div class="info">
+								<h2 class="head white">новые продукты в разработке</h2>
+								<p>которые облегчат вашу жизнь</p>
+								<div class="btn-landing">
+									<a href="http://dev.creograf-dev.ru/" tabindex="-1">Посмотреть</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="slider1 slick-slide slick-current slick-active"
+						data-slick-index="0" aria-hidden="false" tabindex="0"
+						role="option" aria-describedby="slick-slide00"
+						style="width: 1440px;">
+						<div class="container-landing">
+							<div class="info">
+								<h2 class="head white">Мобильные приложения</h2>
+								<p>которые облегчат вашу жизнь</p>
+								<div class="btn-landing">
+									<a href="http://dev.creograf-dev.ru/" tabindex="0">Посмотреть</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="slider2 slick-slide" data-slick-index="1"
+						aria-hidden="true" tabindex="-1" role="option"
+						aria-describedby="slick-slide01" style="width: 1440px;">
+						<div class="container-landing">
+							<div class="info">
+								<h2 class="head white">Сontacts</h2>
+								<p>
+									мобильное приложение <br>для решения деловых задач
+								</p>
+								<div class="btn-landing">
+									<a href="/product" tabindex="-1">Посмотреть</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="slider3 slick-slide" data-slick-index="2"
+						aria-hidden="true" tabindex="-1" role="option"
+						aria-describedby="slick-slide02" style="width: 1440px;">
+						<div class="container-landing">
+							<div class="info">
+								<h2 class="head white">новые продукты в разработке</h2>
+								<p>которые облегчат вашу жизнь</p>
+								<div class="btn-landing">
+									<a href="http://dev.creograf-dev.ru/" tabindex="-1">Посмотреть</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="slider1 slick-slide slick-cloned" data-slick-index="3"
+						aria-hidden="true" tabindex="-1" style="width: 1440px;">
+						<div class="container-landing">
+							<div class="info">
+								<h2 class="head white">Мобильные приложения</h2>
+								<p>которые облегчат вашу жизнь</p>
+								<div class="btn-landing">
+									<a href="http://dev.creograf-dev.ru/" tabindex="-1">Посмотреть</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<ul class="slick-dots" role="tablist" style="display: block;">
+				<li class="slick-active" aria-hidden="false" role="presentation"
+					aria-selected="true" aria-controls="navigation00"
+					id="slick-slide00"><button type="button" data-role="none"
+						role="button" aria-required="false" tabindex="0">1</button></li>
+				<li aria-hidden="true" role="presentation" aria-selected="false"
+					aria-controls="navigation01" id="slick-slide01" class=""><button
+						type="button" data-role="none" role="button" aria-required="false"
+						tabindex="0">2</button></li>
+				<li aria-hidden="true" role="presentation" aria-selected="false"
+					aria-controls="navigation02" id="slick-slide02" class=""><button
+						type="button" data-role="none" role="button" aria-required="false"
+						tabindex="0">3</button></li>
+			</ul>
+		</div>
+	</div>
+	<div class="s11 ng-scope">
+		<div class="container-landing">
+			<h2>Компания AYRATEX создана в 2015 году.</h2>
+			<p>Основным решением является стремление создавать лучшее для
+				дистрибьюторов, принявших решение о сотрудничестве с нами. Компания
+				предоставляет только качественные современные продукты и выгодный
+				маркетинговый план,с которым любой человек прилагая свое
+				старание,способен выйти на абсолютно новый уровень в своей жизни.</p>
+		</div>
+	</div>
+	<div class="s12 ng-scope">
+		<div class="container-landing">
+			<h2>Продукты</h2>
+			<div data-800="left: 150%; opacity: 0;"
+				 data-200="left: 50%; opacity: 1;" class="p p1">
+				<h3>Это удобно</h3>
+				<p>это современно тенденции и скорость развития мобильных
+					приложений говорят сами за себя. Сегодня очень трудно найти
+					человека не пользующегося смартфоном и каким либо мобильным
+					приложением. количество количество пользователей мобильных гаджетов
+					растет с каждым днем и с нашей компанией вы сможете стать частью
+					этого увлекательного мира.</p>
+			</div>
+			<div data-400="left: 150%; opacity: 0;"
+				data-1000="left: 50%; opacity: 1;" class="p p2">
+				<h3>это не надо носить в сумке</h3>
+				<p>тебе не надо покупать большую неудобную сумку чтобы носить
+					свой продукт на бизнес встречи. Презентовать его можно в любом
+					месте просто включив свой телефон или планшет.</p>
+			</div>
+			<div data-600="left: 150%; opacity: 0;"
+				data-1200="left: 50%; opacity: 1;" class="p p3">
+				<h3>это то,что всегда с вами</h3>
+				<p>в самолете в поезде дома на рыбалке в кафе в ресторане на
+					прогулке на работе где угодно! сегодня люди не представляют жизнь
+					без телефона а значит ваш продукт всегда и везде будет с вами.</p>
+			</div>
+			<div data-800="left: 150%; opacity: 0;"
+				data-1400="left: 50%; opacity: 1;" class="p p4">
+				<h3>это то чем УЖЕ пользуются сотни тысяч людей во всем мире</h3>
+				<p>очень трудно найти человека который не пользуется смартфоном.
+					И еще труднее найти человека который не пользуется различными
+					мобильными приложениями.</p>
+			</div>
+			<div data-1000="left: 150%; opacity: 0;"
+				data-1600="left: 50%; opacity: 1;" class="p p5">
+				<h3>Вы уже с этим работаете!!!</h3>
+				<p>как вы узнали о фейсбуке? о Вконтакте? одноклассники? а как в
+					вашем телефоне оказался инстаграмм и ли скайп? а вайбер или ватсап?
+					это лишь малое число популярных мобильных приложений и на 99% можно
+					сказать что вам о них кто то рассказал! что вы сделали когда
+					установили какое новое интересное приложение? рассказали об это
+					вашим знакомым или как минимум обсудили его с теми у кого оно уже
+					есть. вы пользуетесь и рассказываете. Вам за это кто нибудь платит?
+					Наша компания просто совместила воедино то что существует раздельно
+					- индустрию сетевого маркетинга и индустрию мобильных приложений.</p>
+			</div>
+			<div class="btn-landing">
+				<a href="/product" tabindex="0" data-1100="left: 150%; opacity: 0;"
+					data-1700="left: 50%; opacity: 1;">Подробнее</a>
+			</div>
+		</div>
+	</div>
+	<div class="s2 ng-scope">
+		<div class="container-landing">
+			<h2>
+				Все сервисы <br>в одном <br>приложении
+			</h2>
+		</div>
+		<div class="bg"></div>
+	</div>
+	<div class="s3 ng-scope">
+		<h2 class="main-head-landing">Как начать</h2>
+		<div class="container-landing">
+			<div class="event">
+				<div class="inside">
+					<span class="face"><img src="/resources/event1.png" alt=""
+						title=""></span><span class="back"><a href="/register"
+						ui-sref="pages.home.register">зарегистрируйтесь на сайте</a></span>
+				</div>
+				<p class="date-landing">Регистрация</p>
+			</div>
+			<div class="event">
+				<div class="inside">
+					<span class="face"><img src="/resources/event2.png" alt=""
+						title=""></span><span class="back"><a href="">Узнать
+							подробнее</a></span>
+				</div>
+				<p class="date-landing">Изучите информацию</p>
+			</div>
+			<div class="event">
+				<div class="inside">
+					<span class="face"><img src="/resources/event3.png" alt=""
+						title=""></span><span class="back"><a href="">Команде
+							успешных людей</a></span>
+				</div>
+				<p class="date-landing">Присоединяйтесь к нам</p>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<footer class="ng-scope">
+		<div class="logo">
+			<p class="copyright">Все права защищены и принадлежат AYRATEX,
+				2015</p>
+		</div>
+		<div class="f-menu2">
+			<a href="">О компании</a><a href="">Продукты</a><a href="">Обратная
+				связь</a><a href="">Система вознаграждений</a><a href="">Возможности</a>
+		</div>
+		<ul class="social">
+			<li><a alt="Instagram" href="http://instagram.com/"
+				class="inst tip"></a></li>
+			<li><a alt="Twitter" href="http://twitter.com/" class="tw tip"></a></li>
+			<li><a alt="Facebook" href="https://www.facebook.com/"
+				class="fb tip"></a></li>
+			<li><a alt="VK.com" href="http://vk.com/" class="vk tip"></a></li>
+		</ul>
+		<p class="develop">
+			<a href="http://creograf.ru/">Разработка сайта<img
+				src="/resources/creograf.png" alt="разработка сайта"
+				title="разработка сайта"></a>
+		</p>
+	</footer></ui-view></ui-view>
+	<!-- uiView: modal -->
+	<div id="modal-wrap" ui-view="modal" class="ng-scope"></div>
+</body>
+</html>

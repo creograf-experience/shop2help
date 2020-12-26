@@ -1,0 +1,23 @@
+.page__title
+  h1 Пользователи
+.page__content
+  .form-group
+    label Поиск
+    .forms-grouping
+      input.form-control(ng-model='globalFilter.$' ng-change='tableParams.reload()')
+
+  table.table__build.width-max(ng-table='tableParams')
+    tr(ng-repeat='customer in $data')
+      td(data-title="'Логин'" data-sortable="'login'")
+        | {{::customer.login}}
+        span.paid-customer(ng-if='customer.paidCustomer' title='совершал покупки') *
+      td(data-title="'ФИО'") {{::customer.name}}
+      td(data-title="'e-mail'") {{::customer.email}}
+      td(data-title="'Баланс (В обработке|Готовый)'" data-sortable="'balance'") {{::customer.balance.inProcess | number:2}} | {{::customer.balance.ready | number:2}}
+      td.act(data-title="'Операции'")
+        a.btn.btn-sm.btn-primary(ui-sref='customersShow({customerId:customer._id})')
+          span
+        button.btn.btn-sm.btn-danger(
+          ng-really-click='deleteCustomer(customer)'
+          ng-really-message='Удалить запись?')
+          span

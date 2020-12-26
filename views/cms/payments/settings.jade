@@ -1,0 +1,28 @@
+.page__content.padding2
+  form(novalidate ng-submit='updateSettings()')
+    h3 Банковские реквезиты
+    .forms-grouping
+      .form-group
+        label Получатель
+        input.form-control(type='text' ng-model='settings.receiver')
+      .form-group
+        label ИНН получателя
+        input.form-control(type='text' ng-model='settings.inn' maxlength='12')
+      .form-group
+        label КПП получателя
+        input.form-control(type='text' ng-model='settings.kpp' maxlength='20')
+      .form-group
+        label Рассчетный счет
+        input.form-control(type='text' ng-model='settings.account')
+      .form-group
+        label Банк
+        input.form-control(type='text' ng-model='settings.bank')
+      .form-group
+        label БИК банка
+        input.form-control(type='text' ng-model='settings.bankBic')
+      .form-group
+        label Корреспондентский счет
+        input.form-control(type='text' ng-model='settings.corAccount')
+
+    .form-group.submit__group
+      input.btn.btn-green(type='submit' value='Сохранить')

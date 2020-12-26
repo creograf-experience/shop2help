@@ -1,0 +1,63 @@
+.page__title
+  h1
+    | {{::customer.name}} {{customer.surname}}
+    span.paid-customer(ng-if='customer.paidCustomer'
+      title='совершал покупки') *
+.page__content
+  form.form(novalidate ng-submit='updateCustomer()')
+    .row
+      .col-sm-6
+        .form-group
+          label ФИО
+          p {{::customer.surname}} {{::customer.name}} {{customer.lastname}}
+        .form-group
+          label Логин
+          p {{::customer.login}}
+        .form-group
+          label e-mail
+          p {{::customer.email}}
+    .row
+      .col-sm-4
+        .form-group
+          label Баланс пользователя
+          p 
+            span Активный {{customer.balance.ready}} 
+            br
+            span В обработке {{customer.balance.inProcess}}
+
+    h3 Зачисления
+    table.table.form-table.table__build.order-table
+      thead
+        tr
+          th Дата
+          th Тип
+          th Сумма, руб.
+          th Комментарий
+      tbody
+        tr(ng-repeat='payment in payments')
+          td {{::payment.date | date:'dd.MM.yyyy'}}
+          td {{::payment.purpose}}
+          td {{::payment.total | number:2}}
+          td {{::payment.comment}}
+
+    h3 Покупки
+    table.table.form-table.table__build.order-table
+      thead
+        tr
+          th Номер заказа
+          th Дата
+          th Магазин
+          th Сумма заказа, руб.
+          th Прибыль портала, руб.
+          th Кэшбэк пользователю, руб.
+          th Статус
+          
+      tbody
+        tr(ng-repeat='order in orders')
+          td {{::order.order_id}}
+          td {{::order.order_date | date:'dd.MM.yyyy'}}
+          td {{::order.shop[0].name}}
+          td {{::order.cart | number:2}}
+          td {{::order.profit | number:2}}
+          td {{::order.payment | number:2}}
+          td {{statuses[order.status]}}

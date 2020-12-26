@@ -1,0 +1,9 @@
+modal
+  #verified.box-modal
+    .modal-close(ng-click="vm.handleClick()")
+      img.close(src="landing/img/close-red.png" alt="")
+    .modal-title Подтверждение регистрации
+    p(ng-hide='vm.ready') Секундочку...
+    p(ng-if='vm.ready && vm.verified') Ваш электронный адрес был успешно подтвержден. Вы можете зайти, используя ваши логин и пароль
+    p(ng-if='vm.ready && !vm.verified') {{vm.errorMessage}}
+    a.blue-btn(ng-click="vm.handleClick()") Закрыть

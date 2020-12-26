@@ -1,0 +1,17 @@
+.mm-alert(ng-repeat='alert in alerts')
+  .alert(ng-if="alert.type=='info'")
+    h4.alert-head {{::alert.title}}
+    p {{::alert.msg | characters:140}}
+    a.alert-close(ng-click='close()')
+
+  .alert.error(ng-if="alert.type=='danger'")
+    h4.alert-head {{::alert.title}}
+    p {{::alert.msg | characters:140}}
+    a.alert-close(ng-click='close()')
+  
+  .new-message-alert(ng-if="alert.type=='social'" ng-click='alertAction($index)')
+    img.alert-user-photo(ng-src='{{::alert.photo}}' mm-placeholder='thumb')
+    //.alert-time 20 минут назад
+    a.alert-close(ng-click='close($index)')
+    h4.author-name {{::alert.name}}
+    p.alert-text {{::alert.msg | characters:140}}

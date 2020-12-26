@@ -1,0 +1,47 @@
+.page__title
+    h1 Добавить новость
+.page__content.padding2
+    form(novalidate name='newsForm' ng-submit='createNews()')
+      .form-group
+        label Заголовок
+        input.form-control(type='text' ng-model='newNews.title' required)
+      .form-group
+        label Текст
+        textarea.form-control(ui-tinymce='tinymceOptions' ng-model='newNews.body')
+      .form-group
+        label Анонс
+        textarea.form-control(ng-model='newNews.preview' rows='10')
+      .form-group
+        label Ссылка
+        input.form-control(type='text' ng-model='newNews.slug')
+      .form-group
+        .checkbox
+          input(type='checkbox', id='c1' ng-model='newNews.visible')
+          label(for="c1") видимость на сайте
+
+      .form-group
+        label Дата
+        span(sb-date-select ng-model='newNews.date'
+           min='{{::now}}' max='{{::fiveYearsSinceNow}}')
+
+      .form-group
+        .col-sm-9
+          .btn-group
+            label.btn.btn-primary(ng-model='newNews.isAnnouncement'
+              ng-change='calcRemain()' btn-radio="true") Анонс
+            label.btn.btn-primary(ng-model='newNews.isAnnouncement'
+              ng-change='calcRemain()' btn-radio="false") Новость
+
+      .form-group
+        label Ключевые слова
+        input.form-control(type='text' ng-model='newNews.seokeyword')
+      .form-group
+        label Описание
+        input.form-control(type='text' ng-model='newNews.seodescr')
+
+      vit-attached-file(vit-file='newNews.images')
+
+      .form-group
+        input.btn.btn-green(type='submit' value='Создать'
+          ng-disabled='newsForm.$invalid')
+

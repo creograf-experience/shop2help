@@ -1,0 +1,35 @@
+h2.main-head {{::vm.category.title}}
+.crumbs
+  ul
+    li(ng-repeat='cat in vm.category.parents')
+      a(ui-sref='app.categories.show({slug: cat.slug})') {{::cat.title}}
+
+.main
+  .category(ng-repeat='subcat in vm.category.children')
+    .cat
+      a.cat-image(ui-sref='app.categories.show({slug: subcat.slug})')
+        img(ng-src='{{subcat.image.thumb.url}}')
+      a.cat-name(ui-sref='app.categories.show({slug: subcat.slug})') {{::subcat.title}}
+  .clearfix
+
+  .infinite-scroll(infinite-scroll='vm.nextPage()' infinite-scroll-disabled='(vm.busy || !vm.active)')
+    .catalog-item(ng-repeat='product in vm.products track by product._id')
+      a.catalog-image(ui-sref='app.products.show({slug: product.slug})')
+        img(ng-src='{{product.mainImage.thumb.url}}')
+      .item-description
+        a.item-name(ui-sref='app.products.show({slug: product.slug})') {{::product.title}}
+        p.articul Артикул: {{::product.sku}}
+        p.desc {{::product.preview}}
+        .avalible-at(ng-if='!product.isAvalible')
+          p.anounce Товар поступит в продажу через:
+          item-date(avalible-at='product.avalibleAt' is-avalible='product.isAvalible')
+
+      .item-price
+        | Цена
+        .price
+          span {{::product.currentPrice | price}} &nbsp;
+          b руб
+        | Количество
+        counter(amount='product.amount' ng-hide='product.inCart')
+        button.btn-grey(ng-click='vm.addToCart(product)' ng-hide='product.inCart') В корзину
+        button.btn-grey.btn-grey-carted(ui-sref='app.cart' ng-show='product.inCart') В корзине

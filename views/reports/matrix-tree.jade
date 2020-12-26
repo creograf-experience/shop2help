@@ -1,0 +1,33 @@
+.main.matrix(ng-if='vm.tree._id')
+  a.goto-up(ui-sref='app.reports.matrix.show({tokenId: vm.tree.parent})' ng-if='vm.tree.parent') Вверх
+  .level1
+    .number-j {{::vm.tree.number}}
+    .big-circle(ng-class='{paid: vm.tree.isPaid}')
+    .username {{::vm.tree.user.login}}
+    .line
+      img(src='/resources/line1.png' alt='' title='')
+  .children
+    .level2(ng-repeat='child1 in vm.tree.children' ng-class="{'empty-token': child1.isEmpty}")
+      .number-j {{::child1.number}}
+      .circle(ng-class='{paid: child1.isPaid}' ng-click='vm.goToToken(child1._id)')
+      .username {{::child1.user.login}}
+      .line
+        img(src='/resources/line2.png' alt='' title='')
+      .children
+        .level3(ng-repeat='child2 in child1.children' ng-class="{'empty-token': child2.isEmpty}")
+          .number-j {{::child2.number}}
+          .circle(ng-class='{paid: child2.isPaid}' ng-click='vm.goToToken(child2._id)')
+          .username {{::child2.user.login}}
+          .line
+            img(src='/resources/line3.png' alt='' title='')
+          .children
+            .level4(ng-repeat='child3 in child2.children' ng-class="{'empty-token': child3.isEmpty}")
+              .number-j {{::child3.number}}
+              .circle(ng-class='{paid: child3.isPaid}' ng-click='vm.goToToken(child3._id)')
+              .username {{::child3.user.login}}
+              .line
+                img(src='/resources/line4.png' alt='' title='')    
+              .children
+                .level5(ng-repeat='child4 in child3.children' ng-class="{'empty-token': child4.isEmpty}")
+                  .circle(ng-class='{paid: child4.isPaid}' ng-click='vm.goToToken(child4._id)')
+.no-token-header(ng-if='(vm.isReady && !vm.tree._id)') У вас пока нет жетонов

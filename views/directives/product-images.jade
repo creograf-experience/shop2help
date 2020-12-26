@@ -1,0 +1,8 @@
+.catalog-image.product-image
+  .stage(ui-sref='app.products.show.image({imageId: imageSelected._id})')
+    img(ng-src='{{imageSelected.detail.url}}')
+  .navigation(ng-if='product.images && product.images.length > 1')
+    .carousel.carousel-navigation
+      ul
+        li(ng-repeat='image in product.images')
+          img(ng-src='{{image.tiny.url}}' ng-click='setImageSelected(image)')

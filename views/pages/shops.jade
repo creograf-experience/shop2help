@@ -1,0 +1,50 @@
+include content-page-header
+.shops.content-page
+  .container
+    .row.max-width
+      .page-path
+        a.main-blue(ui-sref="pages.home")
+          | Главная 
+        |> Магазины
+      .content-title
+        | Магазины
+      .search-line
+        input(type='text', placeholder='Введите запрос...' ng-model="vm.searchString" ng-keypress="vm.searchKey($event)")
+        button.search-btn(ng-click="vm.search()")
+          img.loupe(src='/landing/img/loupe.png', alt='')
+          span.text() Искать
+      .categories-list
+        ul.hidden-xs
+          li(ng-repeat="cat in vm.categories")
+            a(href='#' ng-click="vm.searchCat(cat.name)") {{cat.name}}
+        .visible-xs
+          select.cat-select(ng-model="vm.selectCat" ng-change="vm.catSelected()")
+            option(value="") Категории магазинов
+            option(ng-repeat="cat in vm.categories" value="{{cat.name}}" ) {{cat.name}}
+
+      .shops-list
+        .shop-card(ng-repeat='shop in vm.shops')
+          .row
+            .col-md-3(ui-sref="pages.view-shop({shopId: shop.shopId})")
+              .image-shop-logo(style='background-image: url({{shop.photo.thumb.url}});' ng-if='!shop.logo')
+              .image-shop-logo(style='background-image: url({{shop.logo}});' ng-if='shop.logo')
+            .col-md-7
+              a.shop-name(ui-sref="pages.view-shop({shopId: shop.shopId})" ) {{shop.name}}
+              ul.shop-categories
+                li(ng-repeat='cat in shop.categories' ng-click="vm.searchCat(cat)") {{cat}}
+              .shop-info
+                .row(ng-repeat="tariff in shop.tariffs" style="display: flex; justify-content: space-between;")
+                  .col-md-5.col-sm-5.col-xs-12
+                    span.text.text-title {{tariff.name}}
+                  .clearfix.visible-xs
+                  .col-md-2.col-sm-2.col-xs-2
+                    span.text.percent {{tariff.size}}
+                  .clearfix.visible-xs
+                  //- .col-md-5.col-sm-3.col-xs-12
+                  //-   span.text Cashback до {{tariff.hold_time}} дней
+            .col-md-2.rating-shop-view
+              ng-rating(ng-model="shop.rating" show-grade="true")
+          .fb-link-wrapper
+            img.fb-icon(src='/landing/img/shops-fb-icon.png', alt='')
+            a.fb-link(href='') Отзывы
+include content-page-footer

@@ -1,0 +1,40 @@
+.page__title
+  h1 Статистика по товарам
+
+.page__cpanel
+
+.page__content
+  .form-group
+    .period-form.form-inline
+      .input-group
+        label Период c
+        .input-group
+          input.form-control(type='text' ng-model='periodFrom' disabled
+          ng-change='refreshList()'
+            datepicker-options='dateOptions'
+            datepicker-popup='{{dateOptions.format}}' is-open="fromOpen" close-text='Закрыть')
+          .input-group-btn
+            button.btn.btn-default(type='button' ng-click='toggleFrom($event)')
+              i.glyphicon.glyphicon-calendar
+      .input-group
+        label по
+        .input-group
+          input.form-control(type='text' ng-model='periodTo' disabled
+            ng-change='refreshList()'
+            datepicker-options='dateOptions'
+            datepicker-popup='{{dateOptions.format}}' is-open="toOpen" close-text="Закрыть")
+          .input-group-btn
+            button.btn.btn-default(type='button' ng-click='toggleTo($event)')
+              i.glyphicon.glyphicon-calendar
+
+  div
+    table.table__build.form-table.width-max(ng-table='tableParams')
+      tr(ng-repeat='product in $data')
+        td(data-title="'Наименование'" sortable="'title'")
+          a(ui-sref="products.show.details({productId: product._id})") {{::product.title}}
+        td(data-title="'Цена, руб.'" sortable="'price'")
+          | {{::product.price / 100 | currency:''}}
+        td(data-title="'Количество'" sortable="'amount'")
+          | {{::product.amount}}
+        td(data-title="'Сумма, руб.'" sortable="'total'")
+          | {{::product.total / 100 | currency:''}}

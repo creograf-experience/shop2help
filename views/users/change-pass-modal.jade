@@ -1,0 +1,14 @@
+modal(close-sref='app.profile.details')
+#change.box-modal
+  .modal-close(ui-sref='app.profile.details')
+  h3 Поменять пароль
+  .alert-error(ng-show='vm.error') {{vm.error}}
+  form(ng-submit='vm.changePass()' name='vm.form' novalidate)
+    input(type='password' placeholder='текущий пароль' name='passCurrent'
+      ng-model='vm.passCurrent' required ng-change='vm.setCurrentValid()')
+    form-error(ng-show='vm.form.passCurrent.$error.wrongpass') Старый пароль указан неверно
+    input(type='password' placeholder='новый пароль' ng-model='vm.password'
+      required ng-minlength='6')
+    input(type='password' placeholder='повторите новый пароль'
+      ng-model='vm.passConfirm' input-match='vm.password' required)
+    input(type='submit' value='Установить пароль').btn-grey

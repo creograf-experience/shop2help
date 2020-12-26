@@ -1,0 +1,44 @@
+.content
+  .page__title
+    h1 Переводы на счет благотворительных организаций
+  .page__cpanel
+    button.btn.btn-green.add-category(ngf-select ngf-change="vm.addBankStatement($files)")
+      span +
+      | Добавить выписку
+    p {{vm.fileName}}
+    button(ng-if="vm.fileName" ng-click="vm.parseBankStatement()") Parse
+.page__content
+  .form-group
+    label Поиск
+    .forms-grouping
+      input.form-control(ng-model='globalFilter.bankStatement["ПолучательИНН"]' ng-change='updateFilter()' placeholder="ИНН Получателя")
+.page__content
+  div
+    table.table__build.form-table.width-max(ng-table='tableParams')
+      tr(ng-repeat='transfer in $data')
+        td.name-payment(data-title="'Номер'") {{::transfer.bankStatement["Номер"]}}
+        td.name-payment(data-title="'Дата'") {{::transfer.bankStatement["Дата"]}}
+        td.name-payment(data-title="'Сумма'") {{::transfer.bankStatement["Сумма"]}}
+        td.name-payment(data-title="'ПлательщикСчет'") {{::transfer.bankStatement["ПлательщикСчет"]}}
+        td.name-payment(data-title="'ДатаСписано'") {{::transfer.bankStatement["ДатаСписано"]}}
+        td.name-payment(data-title="'ПлательщикИНН'") {{::transfer.bankStatement["ПлательщикИНН"]}}
+        td.name-payment(data-title="'Плательщик1'") {{::transfer.bankStatement["Плательщик1"]}}
+        td.name-payment(data-title="'ПлательщикРасчСчет'") {{::transfer.bankStatement["ПлательщикРасчСчет"]}}
+        td.name-payment(data-title="'ПлательщикБанк1'") {{::transfer.bankStatement["ПлательщикБанк1"]}}
+        td.name-payment(data-title="'ПлательщикБанк2'") {{::transfer.bankStatement["ПлательщикБанк2"]}}
+        td.name-payment(data-title="'ПлательщикБИК'") {{::transfer.bankStatement["ПлательщикБИК"]}}
+        td.name-payment(data-title="'ПлательщикКорсчет'") {{::transfer.bankStatement["ПлательщикКорсчет"]}}
+        td.name-payment(data-title="'ПолучательСчет'") {{::transfer.bankStatement["ПолучательСчет"]}}
+        td.name-payment(data-title="'ДатаПоступило'") {{::transfer.bankStatement["ДатаПоступило"]}}
+        td.name-payment(data-title="'ПолучательИНН'" filter="{ bankStatement: 'text' }") {{::transfer.bankStatement["ПолучательИНН"]}}
+        td.name-payment(data-title="'Получатель1'") {{::transfer.bankStatement["Получатель1"]}}
+        td.name-payment(data-title="'ПолучательРасчСчет'") {{::transfer.bankStatement["ПолучательРасчСчет"]}}
+        td.name-payment(data-title="'ПолучательБанк1'") {{::transfer.bankStatement["ПолучательБанк1"]}}
+        td.name-payment(data-title="'ПолучательБанк2'") {{::transfer.bankStatement["ПолучательБанк2"]}}
+        td.name-payment(data-title="'ПолучательБИК'") {{::transfer.bankStatement["ПолучательБИК"]}}
+        td.name-payment(data-title="'ПолучательКорсчет'") {{::transfer.bankStatement["ПолучательКорсчет"]}}
+        td.name-payment(data-title="'ВидПлатежа'") {{::transfer.bankStatement["ВидПлатежа"]}}
+        td.name-payment(data-title="'ВидОплаты'") {{::transfer.bankStatement["ВидОплаты"]}}
+        td.name-payment(data-title="'СрокПлатежа'") {{::transfer.bankStatement["СрокПлатежа"]}}
+        td.name-payment(data-title="'Очередность'") {{::transfer.bankStatement["Очередность"]}}
+        td.name-payment(data-title="'НазначениеПлатежа'") {{::transfer.bankStatement["НазначениеПлатежа"]}}

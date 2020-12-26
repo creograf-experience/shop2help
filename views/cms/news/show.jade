@@ -1,0 +1,77 @@
+.page__title
+    h1 Редактирование новости
+.page__content.padding2
+    form(novalidate ng-submit='updateNews()' name='newsForm'
+      vit-form-autosave='news/{{news._id}}'
+      vit-autosave-fields='body title preview'
+      ng-model='news')
+      .form-group
+        label Заголовок
+        input.form-control(type='text' name='title'
+          ng-model='news.autosave.title' required
+          ng-model-options='modelOptions')
+      .form-group
+        label Текст
+        textarea.form-control(ui-tinymce='tinymceOptions'
+          name='body' ng-model='news.autosave.body'
+          ng-model-options='modelOptions')
+      .form-group
+        label Анонс
+        textarea.form-control(rows='10'
+          ng-model='news.autosave.preview' name='preview'
+          ng-model-options='modelOptions')
+      .form-group
+        label Ссылка
+        input.form-control(type='text' ng-model='news.slug')
+      .form-group
+        .checkbox
+          input(type='checkbox', id='c1' ng-model='news.visible' ng-change='updateNews()')
+          label(for="c1") видимость на сайте
+
+      .form-group
+        label Дата
+        span(sb-date-select ng-model='news.date'
+           min='{{::now}}' max='{{::fiveYearsSinceNow}}')
+
+      .form-group
+        .col-sm-9
+          .btn-group
+            label.btn.btn-primary(ng-model='news.isAnnouncement'
+              ng-change='calcRemain()' btn-radio="true") Анонс
+            label.btn.btn-primary(ng-model='news.isAnnouncement'
+              ng-change='calcRemain()' btn-radio="false") Новость
+
+      .form-group
+        label Заголовок для SEO
+        input.form-control(type='text' ng-model='news.seotitle'
+          ng-model-options='modelOptions')
+      .form-group
+        label Ключевые слова
+        input.form-control(type='text' ng-model='news.seokeywords'
+          ng-model-options='modelOptions')
+      .form-group
+        label Описание
+        input.form-control(type='text' ng-model='news.seodescr'
+          ng-model-options='modelOptions')
+
+      vit-image-manager(vit-item='news' vit-resource='News')
+
+      .form-group
+        input.btn.btn-green(type='submit' value='Обновить'
+          ng-disabled='newsForm.$invalid')
+        button.btn.btn-default(ng-click='recycleNews()') Удалить
+
+script(type='text/ng-template' id='image-manager.html')
+  ul.list-group
+    il.list-group-item(ng-repeat='image in images track by image._id')
+      vit-attached-image(vit-image='image')
+  label.btn.btn-gray(for='imageUpload')
+    span.glyphicon.glyphicon-upload
+    | Добавить изображение
+  input.hide(type='file' id='imageUpload'
+    ng-file-select="onFileSelect($files)")
+
+script(type='text/ng-template' id='attached-image.html')
+  img(ng-src='{{image.preview.url}}')
+  p {{image.thumb.name}}
+  button.btn.btn-gray(ng-click='deleteImage()') Удалить

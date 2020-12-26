@@ -1,0 +1,30 @@
+modal
+  #reg.box-modal
+    .modal-close(ui-sref='pages.home')
+      img.close(src="landing/img/close-red.png" alt="")
+    form(name='vm.regForm' ng-submit='vm.register()' novalidate)
+      .modal-title Регистрация
+      input(type='text' placeholder='Имя'
+        ng-model='vm.newUser.name' name='name' required)
+      form-error(ng-show='vm.err.errors.name') {{vm.err.errors.name.message}}
+      input(type='text' placeholder='Телефон'
+        ng-model="vm.newUser.phoneNumber" ng-change="vm.formatPhone()" ng-focus="vm.onFocus()" name='phoneNumber' required)
+      input(type='email' placeholder='E-mail'  ng-change='vm.validateEmail()'
+        ng-model='vm.newUser.email' name='email' required)
+      form-error(ng-show='vm.err.errors.email') {{vm.err.errors.email.message}}
+      form-error(ng-show='vm.regForm.email.$error.backend') Пользователь с таким email существует
+      br
+      br
+      input(type='text' placeholder='Логин'
+        ng-model='vm.newUser.login' name='login' required)
+      input(type='password' placeholder='Пароль'
+        ng-model='vm.newUser.password' name='name' required)
+      input(type='password' placeholder='Пароль еще раз'
+        ng-model='vm.newUser.confirmPass' name='name' required)
+      
+      form-error(ng-show='vm.err.message') {{vm.err.message}}
+      button.blue-btn(type='submit') Зарегистрироваться 
+      .acc
+        span У меня есть аккаунт
+        br
+        a(href='/login') Войти

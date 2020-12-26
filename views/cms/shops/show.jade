@@ -1,0 +1,66 @@
+.page__title
+  h1 {{shop.name}}
+
+.page__content
+  label Видимость на сайте
+  input.form-control(ng-model='shop.isVisible' type="checkbox" style='width: 25px;')
+  br
+  label Название
+  input.form-control(ng-model='shop.name')
+  img(src='{{shop.photo.thumb.url}}')
+  span.file-attach(ng-if = 'shop.file.name') {{vm.shop.file.name}}
+  .wrap-input-photo
+    button.pink-border(ngf-select
+      ngf-change='addPhoto($files)'
+      ngf-pattern="'image/jpeg,image/png'")
+      span Обзор
+  //- label Наш процент
+  //- input.form-control(ng-model='shop.ourPercent')
+  //- label Покупателю
+  //- input.form-control(ng-model='shop.customerPercent')
+  label Описание
+  textarea.form-control(ui-tinymce='tinymceOptions' ng-model='shop.description')
+  
+  hr
+  
+  label Название категории
+  br
+  input.form-control(ng-model='newCat')
+  br
+  button(ng-click='addCategory()') Добавить
+  br
+  ul.shop-categories
+    li(ng-repeat='cat in shop.categories')
+      | {{cat}}
+      button.btn.btn-sm.btn-danger(
+        ng-really-click='deleteCategory(cat)'
+        ng-really-message='Удалить категорию?')
+        span
+  hr
+
+  button(ng-click='updateShop()') Сохранить
+
+  //- label Код
+  //- input.form-control(ng-model='newPromo.code')
+  //- label Название
+  //- input.form-control(ng-model='newPromo.name')
+  //- label Дата окончания
+  //- input.form-control(ng-model='newPromo.validTo')
+  //- button(ng-click='addPromo()') Добавить
+  //- hr
+  //- div
+  //-   table.table__build.form-table.width-max(ng-table='tableParams' export-csv='csv')
+  //-     tr(ng-repeat='promo in $data')
+  //-       td.name-order(data-title="'Код'")
+  //-         | {{::promo.code}}
+  //-       td.name-order(data-title="'Название'")
+  //-         | {{::promo.name}}
+  //-       td(data-title="'Действителен до'")
+  //-         | {{::promo.validTo | date:'dd.mm.yyyy'}}
+  //-       td
+  //-         a.btn.btn-sm.btn-primary(ui-sref='shops.show({shopId: shop._id})')
+  //-           span
+  //-         button.btn.btn-sm.btn-danger(
+  //-           ng-really-click='deletePromo(promo)'
+  //-           ng-really-message='Удалить промокод?')
+  //-           span
